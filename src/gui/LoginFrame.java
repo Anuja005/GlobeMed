@@ -4,6 +4,10 @@
  */
 package gui;
 
+import dto.Auth;
+import dto.UserType;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author ANUJA
@@ -13,6 +17,13 @@ public class LoginFrame extends javax.swing.JFrame {
     /**
      * Creates new form LoginFrame
      */
+    
+     public static Auth auth;
+    
+    public static Auth getAuth(){
+        return auth;
+    }
+    
     public LoginFrame() {
         initComponents();
     }
@@ -26,6 +37,7 @@ public class LoginFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -38,12 +50,12 @@ public class LoginFrame extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
         jPanel6 = new javax.swing.JPanel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        jRadioButton4 = new javax.swing.JRadioButton();
-        jRadioButton5 = new javax.swing.JRadioButton();
-        jRadioButton6 = new javax.swing.JRadioButton();
+        AdminRadioBtn = new javax.swing.JRadioButton();
+        DoctorRadioBtn = new javax.swing.JRadioButton();
+        NurseRadioBtn = new javax.swing.JRadioButton();
+        ReceptionistRadioBtn = new javax.swing.JRadioButton();
+        BillingOfficerRadioBtn = new javax.swing.JRadioButton();
+        PatientRadioBtn = new javax.swing.JRadioButton();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -88,51 +100,58 @@ public class LoginFrame extends javax.swing.JFrame {
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/Login/reset-password.png"))); // NOI18N
 
-        jRadioButton1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jRadioButton1.setText("Admin");
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup1.add(AdminRadioBtn);
+        AdminRadioBtn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        AdminRadioBtn.setSelected(true);
+        AdminRadioBtn.setText("Admin");
+        AdminRadioBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
+                AdminRadioBtnActionPerformed(evt);
             }
         });
 
-        jRadioButton2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jRadioButton2.setText("Doctor");
-        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup1.add(DoctorRadioBtn);
+        DoctorRadioBtn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        DoctorRadioBtn.setText("Doctor");
+        DoctorRadioBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton2ActionPerformed(evt);
+                DoctorRadioBtnActionPerformed(evt);
             }
         });
 
-        jRadioButton3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jRadioButton3.setText("Nurse");
-        jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup1.add(NurseRadioBtn);
+        NurseRadioBtn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        NurseRadioBtn.setText("Nurse");
+        NurseRadioBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton3ActionPerformed(evt);
+                NurseRadioBtnActionPerformed(evt);
             }
         });
 
-        jRadioButton4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jRadioButton4.setText("Receptionist");
-        jRadioButton4.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup1.add(ReceptionistRadioBtn);
+        ReceptionistRadioBtn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        ReceptionistRadioBtn.setText("Receptionist");
+        ReceptionistRadioBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton4ActionPerformed(evt);
+                ReceptionistRadioBtnActionPerformed(evt);
             }
         });
 
-        jRadioButton5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jRadioButton5.setText("Billing Officer");
-        jRadioButton5.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup1.add(BillingOfficerRadioBtn);
+        BillingOfficerRadioBtn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        BillingOfficerRadioBtn.setText("Billing Officer");
+        BillingOfficerRadioBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton5ActionPerformed(evt);
+                BillingOfficerRadioBtnActionPerformed(evt);
             }
         });
 
-        jRadioButton6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jRadioButton6.setText("Patient");
-        jRadioButton6.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup1.add(PatientRadioBtn);
+        PatientRadioBtn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        PatientRadioBtn.setText("Patient");
+        PatientRadioBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton6ActionPerformed(evt);
+                PatientRadioBtnActionPerformed(evt);
             }
         });
 
@@ -143,29 +162,29 @@ public class LoginFrame extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jRadioButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jRadioButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jRadioButton4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jRadioButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jRadioButton5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jRadioButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(AdminRadioBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(NurseRadioBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ReceptionistRadioBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(DoctorRadioBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(BillingOfficerRadioBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(PatientRadioBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jRadioButton1)
+                .addComponent(AdminRadioBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jRadioButton2)
+                .addComponent(DoctorRadioBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jRadioButton3)
+                .addComponent(NurseRadioBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jRadioButton4)
+                .addComponent(ReceptionistRadioBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jRadioButton5)
+                .addComponent(BillingOfficerRadioBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jRadioButton6)
+                .addComponent(PatientRadioBtn)
                 .addContainerGap())
         );
 
@@ -270,33 +289,92 @@ public class LoginFrame extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+    private void AdminRadioBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AdminRadioBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
+    }//GEN-LAST:event_AdminRadioBtnActionPerformed
 
-    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
+    private void DoctorRadioBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DoctorRadioBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton2ActionPerformed
+    }//GEN-LAST:event_DoctorRadioBtnActionPerformed
 
-    private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
+    private void NurseRadioBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NurseRadioBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton3ActionPerformed
+    }//GEN-LAST:event_NurseRadioBtnActionPerformed
 
-    private void jRadioButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton4ActionPerformed
+    private void ReceptionistRadioBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReceptionistRadioBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton4ActionPerformed
+    }//GEN-LAST:event_ReceptionistRadioBtnActionPerformed
 
-    private void jRadioButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton5ActionPerformed
+    private void BillingOfficerRadioBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BillingOfficerRadioBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton5ActionPerformed
+    }//GEN-LAST:event_BillingOfficerRadioBtnActionPerformed
 
-    private void jRadioButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton6ActionPerformed
+    private void PatientRadioBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PatientRadioBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton6ActionPerformed
+    }//GEN-LAST:event_PatientRadioBtnActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       this.dispose();
-        new PatientDashboardFrame().setVisible(true);
+        String username = jTextField1.getText();
+        String password = jTextField2.getText();
+        UserType userType;
+        if (AdminRadioBtn.isSelected()) {
+            userType = UserType.Admin;
+        } else if (DoctorRadioBtn.isSelected()) {
+            userType = UserType.Doctor;
+        } else if (NurseRadioBtn.isSelected()) {
+            userType = UserType.Nurse;
+        } else if (ReceptionistRadioBtn.isSelected()) {
+            userType = UserType.Receptionist;
+        } else if (BillingOfficerRadioBtn.isSelected()) {
+            userType = UserType.BillingOfficer;
+        } else {
+            userType = UserType.Patient;
+        }
+
+        auth = new Auth(username, password, userType);
+
+        try {
+        if (auth.isAuthenticated()) {
+    System.out.println("Successfully login");
+
+    switch (auth.getAuthType()) {
+        case Admin -> {
+            this.dispose();
+            new AdminDashboardFrame().setVisible(true);
+        }
+        case Doctor -> {
+            this.dispose();
+            new DoctorDashboardFrame().setVisible(true);
+        }
+        case Nurse -> {
+            this.dispose();
+            new NurseDashboardFrame().setVisible(true);
+        }
+        case Receptionist -> {
+            this.dispose();
+            new ReceptionistDashboardFrame().setVisible(true);
+        }
+        case BillingOfficer -> {
+            this.dispose();
+            new BillingOfficerDashboardFrame().setVisible(true);
+        }
+        case Patient -> {
+            this.dispose();
+            new PatientDashboardFrame().setVisible(true);
+        }
+        default -> JOptionPane.showMessageDialog(this, "Unknown User Type!");
+    }
+
+} else {
+    JOptionPane.showMessageDialog(this, "Invalid Username or Password", "Ooops!", JOptionPane.ERROR_MESSAGE);
+}
+
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Ooops!", JOptionPane.ERROR_MESSAGE);
+        }
+
+        System.out.println(username + ":" + password + ":" + userType.name());
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -335,6 +413,13 @@ public class LoginFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JRadioButton AdminRadioBtn;
+    private javax.swing.JRadioButton BillingOfficerRadioBtn;
+    private javax.swing.JRadioButton DoctorRadioBtn;
+    private javax.swing.JRadioButton NurseRadioBtn;
+    private javax.swing.JRadioButton PatientRadioBtn;
+    private javax.swing.JRadioButton ReceptionistRadioBtn;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -346,12 +431,6 @@ public class LoginFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JRadioButton jRadioButton4;
-    private javax.swing.JRadioButton jRadioButton5;
-    private javax.swing.JRadioButton jRadioButton6;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables

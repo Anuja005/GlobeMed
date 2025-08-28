@@ -4,6 +4,15 @@
  */
 package panel;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import util.Database;
+
+
 /**
  *
  * @author ANUJA
@@ -15,7 +24,117 @@ public class Admin_PatientManagementPanel extends javax.swing.JPanel {
      */
     public Admin_PatientManagementPanel() {
         initComponents();
+        loadPatients(); 
+        
+        
+        
+        jTextField5.addKeyListener(new java.awt.event.KeyAdapter() {
+    public void keyReleased(java.awt.event.KeyEvent evt) {
+        searchPatients();
     }
+});
+
+jTextField6.addKeyListener(new java.awt.event.KeyAdapter() {
+    public void keyReleased(java.awt.event.KeyEvent evt) {
+        searchPatients();
+    }
+});
+
+jTextField7.addKeyListener(new java.awt.event.KeyAdapter() {
+    public void keyReleased(java.awt.event.KeyEvent evt) {
+        searchPatients();
+    }
+});
+
+    }
+    
+    private void clearFields() {
+    jTextField1.setText(""); // Patient ID (auto)
+    jTextField2.setText(""); // Name
+    jTextField3.setText(""); // Mobile
+    jTextField4.setText(""); // Address
+
+    jTextField5.setText(""); // Search ID
+    jTextField6.setText(""); // Search Name
+    jTextField7.setText(""); // Search Mobile
+
+    // if you add more fields later, clear them here too
+}
+
+    
+   private void loadPatients() {
+    try {
+        Connection conn = Database.getInstance().getConnection();
+        String sql = "SELECT * FROM admin_patient";
+        PreparedStatement pst = conn.prepareStatement(sql);
+        ResultSet rs = pst.executeQuery();
+
+        DefaultTableModel model = new DefaultTableModel(new String[]{"ID", "Name", "Mobile", "Address"}, 0) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+
+        while (rs.next()) {
+            int id = rs.getInt("patient_id");
+            String name = rs.getString("patient_name");
+            String mobile = rs.getString("mobile");
+            String address = rs.getString("address");
+
+            model.addRow(new Object[]{id, name, mobile, address});
+        }
+
+        jTable1.setModel(model);
+
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "Error loading patients: " + e.getMessage());
+    }
+}
+private void searchPatients() {
+    String id = jTextField5.getText().trim();
+    String name = jTextField6.getText().trim();
+    String mobile = jTextField7.getText().trim();
+
+    try {
+        Connection conn = Database.getInstance().getConnection();
+
+        // Dynamic SQL with LIKE for live search
+        String sql = "SELECT * FROM admin_patient WHERE "
+                   + "CAST(patient_id AS CHAR) LIKE ? AND "
+                   + "patient_name LIKE ? AND "
+                   + "mobile LIKE ?";
+
+        PreparedStatement pst = conn.prepareStatement(sql);
+        pst.setString(1, "%" + id + "%");      // matches partial ID
+        pst.setString(2, "%" + name + "%");    // matches partial name
+        pst.setString(3, "%" + mobile + "%");  // matches partial mobile
+
+        ResultSet rs = pst.executeQuery();
+
+        DefaultTableModel model = new DefaultTableModel(new String[]{"ID", "Name", "Mobile", "Address"}, 0) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false; // make table non-editable
+            }
+        };
+
+        while (rs.next()) {
+            int pid = rs.getInt("patient_id");
+            String pname = rs.getString("patient_name");
+            String pmobile = rs.getString("mobile");
+            String address = rs.getString("address");
+
+            model.addRow(new Object[]{pid, pname, pmobile, address});
+        }
+
+        jTable1.setModel(model);
+
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "Error searching patients: " + e.getMessage());
+    }
+}
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -40,6 +159,7 @@ public class Admin_PatientManagementPanel extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -72,6 +192,8 @@ public class Admin_PatientManagementPanel extends javax.swing.JPanel {
 
         jLabel9.setText("Patient ID");
 
+        jTextField1.setEditable(false);
+
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -91,6 +213,11 @@ public class Admin_PatientManagementPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jLabel5.setText("ID");
@@ -98,6 +225,13 @@ public class Admin_PatientManagementPanel extends javax.swing.JPanel {
         jLabel6.setText("Name");
 
         jLabel7.setText("Mobile");
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/Admin/brush.png"))); // NOI18N
+        jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel8MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -120,19 +254,23 @@ public class Admin_PatientManagementPanel extends javax.swing.JPanel {
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(87, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addComponent(jLabel8)
+                .addGap(22, 22, 22))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(13, 13, 13)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel7))
+                .addGap(16, 16, 16)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel8)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel5)
+                        .addComponent(jLabel6)
+                        .addComponent(jLabel7)))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -147,14 +285,29 @@ public class Admin_PatientManagementPanel extends javax.swing.JPanel {
         jButton1.setBackground(new java.awt.Color(51, 255, 51));
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Add");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setBackground(new java.awt.Color(0, 153, 255));
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Update");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setBackground(new java.awt.Color(255, 51, 51));
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Delete");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -234,6 +387,117 @@ public class Admin_PatientManagementPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String name = jTextField2.getText();
+    String mobile = jTextField3.getText();
+    String address = jTextField4.getText();
+
+    try {
+        Connection conn = Database.getInstance().getConnection();
+        String sql = "INSERT INTO admin_patient (patient_name, mobile, address) VALUES (?, ?, ?)";
+        PreparedStatement pst = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+        pst.setString(1, name);
+        pst.setString(2, mobile);
+        pst.setString(3, address);
+
+        int rows = pst.executeUpdate();
+
+        if (rows > 0) {
+            ResultSet rs = pst.getGeneratedKeys();
+            if (rs.next()) {
+                int generatedId = rs.getInt(1);
+                jTextField1.setText(String.valueOf(generatedId)); // show new patient_id
+            }
+            JOptionPane.showMessageDialog(this, "Patient Added Successfully!");
+        }
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+    }
+    loadPatients();
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        int id = Integer.parseInt(jTextField1.getText());
+    String name = jTextField2.getText();
+    String mobile = jTextField3.getText();
+    String address = jTextField4.getText();
+
+    try {
+        Connection conn = Database.getInstance().getConnection();
+        String sql = "UPDATE admin_patient SET patient_name=?, mobile=?, address=? WHERE patient_id=?";
+        PreparedStatement pst = conn.prepareStatement(sql);
+        pst.setString(1, name);
+        pst.setString(2, mobile);
+        pst.setString(3, address);
+        pst.setInt(4, id);
+
+        int rows = pst.executeUpdate();
+
+        if (rows > 0) {
+            JOptionPane.showMessageDialog(this, "Patient Updated Successfully!");
+        } else {
+            JOptionPane.showMessageDialog(this, "No patient found with ID " + id);
+        }
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+    }
+    loadPatients();
+
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+       int id = Integer.parseInt(jTextField1.getText());
+
+    try {
+        Connection conn = Database.getInstance().getConnection();
+        String sql = "DELETE FROM admin_patient WHERE patient_id=?";
+        PreparedStatement pst = conn.prepareStatement(sql);
+        pst.setInt(1, id);
+
+        int rows = pst.executeUpdate();
+
+        if (rows > 0) {
+            JOptionPane.showMessageDialog(this, "Patient Deleted Successfully!");
+            // Clear fields
+            jTextField1.setText("");
+            jTextField2.setText("");
+            jTextField3.setText("");
+            jTextField4.setText("");
+        } else {
+            JOptionPane.showMessageDialog(this, "No patient found with ID " + id);
+        }
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+    }
+    loadPatients();
+
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+  jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+    public void mouseClicked(java.awt.event.MouseEvent evt) {
+        int row = jTable1.getSelectedRow();
+        if (row >= 0) {
+            jTextField1.setText(jTable1.getValueAt(row, 0).toString());
+            jTextField2.setText(jTable1.getValueAt(row, 1).toString()); 
+            jTextField3.setText(jTable1.getValueAt(row, 2).toString());
+            jTextField4.setText(jTable1.getValueAt(row, 3).toString()); 
+        }
+    }
+});
+
+    }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
+        jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
+    @Override
+    public void mouseClicked(java.awt.event.MouseEvent evt) {
+        clearFields();
+    }
+});
+    }//GEN-LAST:event_jLabel8MouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -246,6 +510,7 @@ public class Admin_PatientManagementPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

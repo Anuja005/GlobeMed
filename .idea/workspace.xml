@@ -4,31 +4,19 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1a632612-c32b-4c35-a261-bf85e30b0512" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/build/classes/gui/DoctorDashboardFrame$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/gui/DoctorDashboardFrame$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/gui/DoctorDashboardFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/gui/DoctorDashboardFrame.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/gui/DoctorDashboardFrame.form" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/gui/DoctorDashboardFrame.form" afterDir="false" />
+    <list default="true" id="1a632612-c32b-4c35-a261-bf85e30b0512" name="Changes" comment="Login user roles">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/gui/LoginFrame$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/gui/LoginFrame$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/gui/LoginFrame$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/gui/LoginFrame$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/gui/LoginFrame$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/gui/LoginFrame$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/gui/LoginFrame$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/gui/LoginFrame$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/gui/LoginFrame$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/gui/LoginFrame$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/gui/LoginFrame$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/gui/LoginFrame$6.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/gui/LoginFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/gui/LoginFrame.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/gui/NurseDashboardFrame$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/gui/NurseDashboardFrame$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/gui/NurseDashboardFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/gui/NurseDashboardFrame.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/gui/NurseDashboardFrame.form" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/gui/NurseDashboardFrame.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/panel/AppointmentManagement$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/AppointmentManagement$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/panel/AppointmentManagement.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/AppointmentManagement.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/panel/AppointmentManagement.form" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/AppointmentManagement.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/panel/DoctorAppointmentPanel$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/panel/DoctorAppointmentPanel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/panel/DoctorAppointmentPanel.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/panel/DoctorPatientPanel.form" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/DoctorPatientPanel.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/DoctorDashboardFrame.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/DoctorDashboardFrame.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/DoctorDashboardFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/DoctorDashboardFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/gui/LoginFrame.form" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/gui/LoginFrame.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nbproject/private/private.xml" beforeDir="false" afterPath="$PROJECT_DIR$/nbproject/private/private.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/LoginFrame.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/LoginFrame.form" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gui/LoginFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/LoginFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/NurseDashboardFrame.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/NurseDashboardFrame.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/NurseDashboardFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/NurseDashboardFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/panel/AppointmentManagement.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/panel/AppointmentManagement.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/panel/AppointmentManagement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/panel/AppointmentManagement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/panel/DoctorAppointmentPanel.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/panel/DoctorAppointmentPanel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/panel/DoctorPatientPanel.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/panel/DoctorPatientPanel.form" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,6 +27,12 @@
     <option name="formatViaClangd" value="false" />
   </component>
   <component name="Git.Settings">
+    <option name="PUSH_TAGS">
+      <GitPushTagMode>
+        <option name="argument" value="--tags" />
+        <option name="title" value="All" />
+      </GitPushTagMode>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -64,6 +58,7 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
@@ -87,6 +82,52 @@
       <option name="presentableId" value="Default" />
       <updated>1756297480814</updated>
     </task>
+    <task id="LOCAL-00001" summary="Nurse Dashboard UI">
+      <option name="closed" value="true" />
+      <created>1756314034183</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1756314034183</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Nurse Dashboard UI">
+      <option name="closed" value="true" />
+      <created>1756314059974</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1756314059974</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Nurse Dashboard UI">
+      <option name="closed" value="true" />
+      <created>1756314080026</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1756314080026</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Patient Dashboard UI">
+      <option name="closed" value="true" />
+      <created>1756316505766</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1756316505766</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Patient Dashboard UI">
+      <option name="closed" value="true" />
+      <created>1756316521042</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1756316521042</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Nurse Dashboard UI" />
+    <MESSAGE value="Patient Dashboard UI" />
+    <option name="LAST_COMMIT_MESSAGE" value="Patient Dashboard UI" />
   </component>
 </project>

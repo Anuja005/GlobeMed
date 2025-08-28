@@ -26,9 +26,10 @@ public class AdminDashboardFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        admin_PatientManagementPanel1 = new panel.Admin_PatientManagementPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
-        admin_PatientManagementPanel1 = new panel.Admin_PatientManagementPanel();
+        admin_PatientManagementPanel2 = new panel.Admin_PatientManagementPanel();
         jPanel2 = new javax.swing.JPanel();
         appointmentManagement1 = new panel.AppointmentManagement();
         jPanel3 = new javax.swing.JPanel();
@@ -50,14 +51,14 @@ public class AdminDashboardFrame extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(admin_PatientManagementPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 889, Short.MAX_VALUE))
+                .addComponent(admin_PatientManagementPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 889, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(admin_PatientManagementPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(admin_PatientManagementPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("", new javax.swing.ImageIcon(getClass().getResource("/resources/Admin/hospital-bed.png")), jPanel1); // NOI18N
@@ -207,6 +208,7 @@ public class AdminDashboardFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private panel.Admin_PatientManagementPanel admin_PatientManagementPanel1;
+    private panel.Admin_PatientManagementPanel admin_PatientManagementPanel2;
     private panel.AppointmentManagement appointmentManagement1;
     private panel.Billing billing2;
     private javax.swing.JLabel jLabel1;

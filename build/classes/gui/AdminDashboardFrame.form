@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <NonVisualComponents>
+    <Component class="panel.Admin_PatientManagementPanel" name="admin_PatientManagementPanel1">
+    </Component>
+  </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
   </Properties>
@@ -62,7 +66,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="admin_PatientManagementPanel1" pref="889" max="32767" attributes="0"/>
+                      <Component id="admin_PatientManagementPanel2" pref="889" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -70,14 +74,14 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="admin_PatientManagementPanel1" pref="530" max="32767" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="admin_PatientManagementPanel2" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="29" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="panel.Admin_PatientManagementPanel" name="admin_PatientManagementPanel1">
+            <Component class="panel.Admin_PatientManagementPanel" name="admin_PatientManagementPanel2">
             </Component>
           </SubComponents>
         </Container>
