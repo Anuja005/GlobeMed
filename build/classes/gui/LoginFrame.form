@@ -226,7 +226,7 @@
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="AdminRadioBtn" alignment="1" max="32767" attributes="0"/>
                                   <Component id="NurseRadioBtn" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="ReceptionistRadioBtn" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="PharmacistRadioBtn" alignment="1" max="32767" attributes="0"/>
                                   <Component id="DoctorRadioBtn" alignment="1" max="32767" attributes="0"/>
                                   <Component id="BillingOfficerRadioBtn" alignment="1" max="32767" attributes="0"/>
                                   <Component id="PatientRadioBtn" alignment="0" max="32767" attributes="0"/>
@@ -245,7 +245,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="NurseRadioBtn" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="ReceptionistRadioBtn" min="-2" max="-2" attributes="0"/>
+                              <Component id="PharmacistRadioBtn" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="BillingOfficerRadioBtn" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
@@ -299,7 +299,7 @@
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="NurseRadioBtnActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JRadioButton" name="ReceptionistRadioBtn">
+                    <Component class="javax.swing.JRadioButton" name="PharmacistRadioBtn">
                       <Properties>
                         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                           <ComponentRef name="buttonGroup1"/>
@@ -307,10 +307,10 @@
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Segoe UI" size="18" style="0"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="Receptionist"/>
+                        <Property name="text" type="java.lang.String" value="Pharmacist"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ReceptionistRadioBtnActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PharmacistRadioBtnActionPerformed"/>
                       </Events>
                     </Component>
                     <Component class="javax.swing.JRadioButton" name="BillingOfficerRadioBtn">

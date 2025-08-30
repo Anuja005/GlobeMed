@@ -89,7 +89,7 @@
               <JTabbedPaneConstraints tabName="">
                 <Property name="tabTitle" type="java.lang.String" value=""/>
                 <Property name="tabIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/resources/Receptionist/hospital-bed.png"/>
+                  <Image iconType="3" name="/resources/Pharmacist/hospital-bed.png"/>
                 </Property>
               </JTabbedPaneConstraints>
             </Constraint>
@@ -98,10 +98,7 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="admin_PatientManagementPanel1" pref="781" max="32767" attributes="0"/>
-                  </Group>
+                  <Component id="admin_PatientManagementPanel1" alignment="1" pref="758" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
@@ -124,7 +121,7 @@
               <JTabbedPaneConstraints tabName="">
                 <Property name="tabTitle" type="java.lang.String" value=""/>
                 <Property name="tabIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/resources/Receptionist/Appointment.png"/>
+                  <Image iconType="3" name="/resources/Pharmacist/Appointment.png"/>
                 </Property>
               </JTabbedPaneConstraints>
             </Constraint>
@@ -133,10 +130,7 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="appointmentManagement1" pref="781" max="32767" attributes="0"/>
-                  </Group>
+                  <Component id="appointmentManagement1" alignment="1" pref="758" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">

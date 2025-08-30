@@ -53,7 +53,7 @@ public class LoginFrame extends javax.swing.JFrame {
         AdminRadioBtn = new javax.swing.JRadioButton();
         DoctorRadioBtn = new javax.swing.JRadioButton();
         NurseRadioBtn = new javax.swing.JRadioButton();
-        ReceptionistRadioBtn = new javax.swing.JRadioButton();
+        PharmacistRadioBtn = new javax.swing.JRadioButton();
         BillingOfficerRadioBtn = new javax.swing.JRadioButton();
         PatientRadioBtn = new javax.swing.JRadioButton();
         jButton1 = new javax.swing.JButton();
@@ -128,12 +128,12 @@ public class LoginFrame extends javax.swing.JFrame {
             }
         });
 
-        buttonGroup1.add(ReceptionistRadioBtn);
-        ReceptionistRadioBtn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        ReceptionistRadioBtn.setText("Receptionist");
-        ReceptionistRadioBtn.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup1.add(PharmacistRadioBtn);
+        PharmacistRadioBtn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        PharmacistRadioBtn.setText("Pharmacist");
+        PharmacistRadioBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ReceptionistRadioBtnActionPerformed(evt);
+                PharmacistRadioBtnActionPerformed(evt);
             }
         });
 
@@ -164,7 +164,7 @@ public class LoginFrame extends javax.swing.JFrame {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(AdminRadioBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(NurseRadioBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(ReceptionistRadioBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(PharmacistRadioBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(DoctorRadioBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(BillingOfficerRadioBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(PatientRadioBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -180,7 +180,7 @@ public class LoginFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(NurseRadioBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ReceptionistRadioBtn)
+                .addComponent(PharmacistRadioBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(BillingOfficerRadioBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -301,9 +301,9 @@ public class LoginFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_NurseRadioBtnActionPerformed
 
-    private void ReceptionistRadioBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReceptionistRadioBtnActionPerformed
+    private void PharmacistRadioBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PharmacistRadioBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_ReceptionistRadioBtnActionPerformed
+    }//GEN-LAST:event_PharmacistRadioBtnActionPerformed
 
     private void BillingOfficerRadioBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BillingOfficerRadioBtnActionPerformed
         // TODO add your handling code here:
@@ -323,8 +323,8 @@ public class LoginFrame extends javax.swing.JFrame {
             userType = UserType.Doctor;
         } else if (NurseRadioBtn.isSelected()) {
             userType = UserType.Nurse;
-        } else if (ReceptionistRadioBtn.isSelected()) {
-            userType = UserType.Receptionist;
+        } else if (PharmacistRadioBtn.isSelected()) {
+            userType = UserType.Pharmacist;
         } else if (BillingOfficerRadioBtn.isSelected()) {
             userType = UserType.BillingOfficer;
         } else {
@@ -350,9 +350,9 @@ public class LoginFrame extends javax.swing.JFrame {
             this.dispose();
             new NurseDashboardFrame().setVisible(true);
         }
-        case Receptionist -> {
+        case Pharmacist -> {
             this.dispose();
-            new ReceptionistDashboardFrame().setVisible(true);
+            new PharmacistDashboardFrame().setVisible(true);
         }
         case BillingOfficer -> {
             this.dispose();
@@ -418,7 +418,7 @@ public class LoginFrame extends javax.swing.JFrame {
     private javax.swing.JRadioButton DoctorRadioBtn;
     private javax.swing.JRadioButton NurseRadioBtn;
     private javax.swing.JRadioButton PatientRadioBtn;
-    private javax.swing.JRadioButton ReceptionistRadioBtn;
+    private javax.swing.JRadioButton PharmacistRadioBtn;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;

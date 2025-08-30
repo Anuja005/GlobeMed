@@ -49,16 +49,15 @@ jTextField7.addKeyListener(new java.awt.event.KeyAdapter() {
     }
     
     private void clearFields() {
-    jTextField1.setText(""); // Patient ID (auto)
-    jTextField2.setText(""); // Name
-    jTextField3.setText(""); // Mobile
-    jTextField4.setText(""); // Address
+    jTextField1.setText(""); 
+    jTextField2.setText(""); 
+    jTextField3.setText(""); 
+    jTextField4.setText(""); 
 
-    jTextField5.setText(""); // Search ID
-    jTextField6.setText(""); // Search Name
-    jTextField7.setText(""); // Search Mobile
+    jTextField5.setText(""); 
+    jTextField6.setText(""); 
+    jTextField7.setText(""); 
 
-    // if you add more fields later, clear them here too
 }
 
     
@@ -388,43 +387,99 @@ private void searchPatients() {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String name = jTextField2.getText();
-    String mobile = jTextField3.getText();
-    String address = jTextField4.getText();
+        String name = jTextField2.getText().trim();
+        String mobile = jTextField3.getText().trim();
+        String address = jTextField4.getText().trim();
 
-    try {
-        Connection conn = Database.getInstance().getConnection();
-        String sql = "INSERT INTO admin_patient (patient_name, mobile, address) VALUES (?, ?, ?)";
-        PreparedStatement pst = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-        pst.setString(1, name);
-        pst.setString(2, mobile);
-        pst.setString(3, address);
+if (name.isEmpty()) {
+    JOptionPane.showMessageDialog(this, "Please enter Patient Name");
+    return; 
+}
+if (mobile.isEmpty()) {
+    JOptionPane.showMessageDialog(this, "Please enter Mobile Number");
+    return;
+}
+if (!mobile.matches("\\d{10}")) { 
+    JOptionPane.showMessageDialog(this, "Invalid Mobile Number. Must be 10 digits.");
+    return;
+}
+if (address.isEmpty()) {
+    JOptionPane.showMessageDialog(this, "Please enter Address");
+    return;
+}
 
-        int rows = pst.executeUpdate();
+try {
+    Connection conn = Database.getInstance().getConnection();
+    String sql = "INSERT INTO admin_patient (patient_name, mobile, address) VALUES (?, ?, ?)";
+    PreparedStatement pst = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+    pst.setString(1, name);
+    pst.setString(2, mobile);
+    pst.setString(3, address);
 
-        if (rows > 0) {
-            ResultSet rs = pst.getGeneratedKeys();
-            if (rs.next()) {
-                int generatedId = rs.getInt(1);
-                jTextField1.setText(String.valueOf(generatedId)); // show new patient_id
-            }
-            JOptionPane.showMessageDialog(this, "Patient Added Successfully!");
+    int rows = pst.executeUpdate();
+
+    if (rows > 0) {
+        ResultSet rs = pst.getGeneratedKeys();
+        if (rs.next()) {
+            int generatedId = rs.getInt(1);
+            jTextField1.setText(String.valueOf(generatedId)); // show new patient_id
         }
-    } catch (Exception e) {
-        JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+        JOptionPane.showMessageDialog(this, "Patient Added Successfully!");
     }
-    loadPatients();
+} catch (Exception e) {
+    JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+}
+loadPatients();
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        int id = Integer.parseInt(jTextField1.getText());
-    String name = jTextField2.getText();
-    String mobile = jTextField3.getText();
-    String address = jTextField4.getText();
+    String idText = jTextField1.getText().trim();
+    String name = jTextField2.getText().trim();
+    String mobile = jTextField3.getText().trim();
+    String address = jTextField4.getText().trim();
+
+    if (idText.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Please select a patient from the table before updating.");
+        return;
+    }
+    int id;
+    try {
+        id = Integer.parseInt(idText);
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "Invalid Patient ID.");
+        return;
+    }
+    if (name.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Please enter Patient Name");
+        return;
+    }
+    if (mobile.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Please enter Mobile Number");
+        return;
+    }
+    if (!mobile.matches("\\d{10}")) {
+        JOptionPane.showMessageDialog(this, "Invalid Mobile Number. Must be 10 digits.");
+        return;
+    }
+    if (address.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Please enter Address");
+        return;
+    }
 
     try {
         Connection conn = Database.getInstance().getConnection();
+
+        String checkSql = "SELECT patient_id FROM admin_patient WHERE patient_id=?";
+        PreparedStatement checkPst = conn.prepareStatement(checkSql);
+        checkPst.setInt(1, id);
+        ResultSet rs = checkPst.executeQuery();
+
+        if (!rs.next()) {
+            JOptionPane.showMessageDialog(this, "No patient found with ID " + id);
+            return;
+        }
+
         String sql = "UPDATE admin_patient SET patient_name=?, mobile=?, address=? WHERE patient_id=?";
         PreparedStatement pst = conn.prepareStatement(sql);
         pst.setString(1, name);
@@ -433,15 +488,16 @@ private void searchPatients() {
         pst.setInt(4, id);
 
         int rows = pst.executeUpdate();
-
         if (rows > 0) {
             JOptionPane.showMessageDialog(this, "Patient Updated Successfully!");
         } else {
-            JOptionPane.showMessageDialog(this, "No patient found with ID " + id);
+            JOptionPane.showMessageDialog(this, "Update failed. Try again.");
         }
+
     } catch (Exception e) {
         JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
     }
+
     loadPatients();
 
     }//GEN-LAST:event_jButton2ActionPerformed

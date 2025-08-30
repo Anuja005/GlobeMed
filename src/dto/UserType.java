@@ -12,7 +12,7 @@ public enum UserType {
     Admin,
     Doctor,
     Nurse,
-    Receptionist,
+    Pharmacist,
     BillingOfficer,
     Patient
 }
