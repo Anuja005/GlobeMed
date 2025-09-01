@@ -4,6 +4,12 @@
  */
 package panel;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import util.Database;
 /**
  *
  * @author ANUJA
@@ -17,6 +23,30 @@ public class NursePatientRecordsPanel extends javax.swing.JPanel {
         initComponents();
     }
 
+    private void loadTable() {
+    try {
+        Connection conn = Database.getInstance().getConnection();
+        String sql = "SELECT * FROM nurse_patient";
+        PreparedStatement pst = conn.prepareStatement(sql);
+        ResultSet rs = pst.executeQuery();
+
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+
+        while (rs.next()) {
+            model.addRow(new Object[]{
+                rs.getInt("patient_id"),
+                rs.getString("patient_name"),
+                rs.getInt("age"),
+                rs.getString("medication_given"),
+                rs.getString("allergies"),
+                rs.getDate("last_visit_date")
+            });
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -52,9 +82,7 @@ public class NursePatientRecordsPanel extends javax.swing.JPanel {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
-        jTextField9 = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -80,21 +108,26 @@ public class NursePatientRecordsPanel extends javax.swing.JPanel {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Name", "Medication Given", "Allergies"
+                "ID", "Name", "Age", "Medication Given", "Allergies", "Last Visit Date"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(jTable1);
@@ -154,18 +187,31 @@ public class NursePatientRecordsPanel extends javax.swing.JPanel {
         jButton1.setBackground(new java.awt.Color(51, 255, 51));
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Add");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setBackground(new java.awt.Color(0, 153, 255));
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Update");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setBackground(new java.awt.Color(255, 51, 51));
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Delete");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jLabel8.setText("Last Visit Date");
-
-        jLabel10.setText("Nurse Notes");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -176,6 +222,9 @@ public class NursePatientRecordsPanel extends javax.swing.JPanel {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel9)
                     .addComponent(jLabel2)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel8)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -186,12 +235,7 @@ public class NursePatientRecordsPanel extends javax.swing.JPanel {
                             .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
                             .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextField8)
-                            .addComponent(jTextField9)))
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel10))
+                            .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -217,12 +261,8 @@ public class NursePatientRecordsPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel10)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
+                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -298,13 +338,123 @@ public class NursePatientRecordsPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+         String patientName = jTextField1.getText();
+    String age = jTextField2.getText();
+    String medication = jTextField3.getText();
+    String allergies = jTextField4.getText();
+    java.util.Date utilDate = jDateChooser1.getDate();
+
+    if (patientName.isEmpty() || age.isEmpty() || medication.isEmpty() || allergies.isEmpty() || utilDate == null) {
+        JOptionPane.showMessageDialog(this, "Please fill all fields!");
+        return;
+    }
+
+    java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+
+    try {
+        Connection conn = Database.getInstance().getConnection();
+        String sql = "INSERT INTO nurse_patient(patient_name, age, medication_given, allergies, last_visit_date) VALUES(?,?,?,?,?)";
+        PreparedStatement pst = conn.prepareStatement(sql);
+        pst.setString(1, patientName);
+        pst.setInt(2, Integer.parseInt(age));
+        pst.setString(3, medication);
+        pst.setString(4, allergies);
+        pst.setDate(5, sqlDate);
+
+        pst.executeUpdate();
+        JOptionPane.showMessageDialog(this, "Patient Added Successfully!");
+        loadTable(); // refresh table
+    } catch (Exception e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+    }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        int row = jTable1.getSelectedRow();
+    if (row == -1) {
+        JOptionPane.showMessageDialog(this, "Select a patient to update!");
+        return;
+    }
+
+    int patientId = (int) jTable1.getValueAt(row, 0);
+    String patientName = jTextField1.getText();
+    String age = jTextField2.getText();
+    String medication = jTextField3.getText();
+    String allergies = jTextField4.getText();
+    java.util.Date utilDate = jDateChooser1.getDate();
+
+    if (patientName.isEmpty() || age.isEmpty() || medication.isEmpty() || allergies.isEmpty() || utilDate == null) {
+        JOptionPane.showMessageDialog(this, "Please fill all fields!");
+        return;
+    }
+
+    java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+
+    try {
+        Connection conn = Database.getInstance().getConnection();
+        String sql = "UPDATE nurse_patient SET patient_name=?, age=?, medication_given=?, allergies=?, last_visit_date=? WHERE patient_id=?";
+        PreparedStatement pst = conn.prepareStatement(sql);
+        pst.setString(1, patientName);
+        pst.setInt(2, Integer.parseInt(age));
+        pst.setString(3, medication);
+        pst.setString(4, allergies);
+        pst.setDate(5, sqlDate);
+        pst.setInt(6, patientId);
+
+        pst.executeUpdate();
+        JOptionPane.showMessageDialog(this, "Patient Updated Successfully!");
+        loadTable();
+    } catch (Exception e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+    }
+    
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+       int row = jTable1.getSelectedRow();
+    if (row == -1) {
+        JOptionPane.showMessageDialog(this, "Select a patient to delete!");
+        return;
+    }
+
+    int patientId = (int) jTable1.getValueAt(row, 0);
+
+    try {
+        Connection conn = Database.getInstance().getConnection();
+        String sql = "DELETE FROM nurse_patient WHERE patient_id=?";
+        PreparedStatement pst = conn.prepareStatement(sql);
+        pst.setInt(1, patientId);
+        pst.executeUpdate();
+
+        JOptionPane.showMessageDialog(this, "Patient Deleted Successfully!");
+        loadTable();
+    } catch (Exception e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+    }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        int row = jTable1.getSelectedRow();
+    if (row != -1) {
+        jTextField1.setText(jTable1.getValueAt(row, 1).toString());
+        jTextField2.setText(jTable1.getValueAt(row, 2).toString());
+        jTextField3.setText(jTable1.getValueAt(row, 3).toString());
+        jTextField4.setText(jTable1.getValueAt(row, 4).toString());
+        jDateChooser1.setDate((java.util.Date) jTable1.getValueAt(row, 5));
+    }
+    }//GEN-LAST:event_jTable1MouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -327,7 +477,5 @@ public class NursePatientRecordsPanel extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
     // End of variables declaration//GEN-END:variables
 }
