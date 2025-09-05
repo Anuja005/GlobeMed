@@ -260,7 +260,7 @@ public class Billing extends javax.swing.JPanel {
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Paid", "Pending", "Rejected" }));
 
-        printBtn.setBackground(new java.awt.Color(102, 153, 255));
+        printBtn.setBackground(new java.awt.Color(51, 153, 255));
         printBtn.setForeground(new java.awt.Color(255, 255, 255));
         printBtn.setText("Print");
         printBtn.addActionListener(new java.awt.event.ActionListener() {

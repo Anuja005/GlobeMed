@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1a632612-c32b-4c35-a261-bf85e30b0512" name="Changes" comment="Pharmacist/Nurse/Doctor Dashboard All Done" />
+    <list default="true" id="1a632612-c32b-4c35-a261-bf85e30b0512" name="Changes" comment=" Patient Billing Reports" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -193,7 +193,23 @@
       <option name="project" value="LOCAL" />
       <updated>1756719699945</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Admin/Billing Officer/ Patient Billing Reports All Done">
+      <option name="closed" value="true" />
+      <created>1757093920860</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1757093920860</updated>
+    </task>
+    <task id="LOCAL-00016" summary=" Patient Billing Reports">
+      <option name="closed" value="true" />
+      <created>1757094026219</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1757094026219</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -207,6 +223,8 @@
     <MESSAGE value="Admin Patient others" />
     <MESSAGE value="Admin Dashboard All Done" />
     <MESSAGE value="Pharmacist/Nurse/Doctor Dashboard All Done" />
-    <option name="LAST_COMMIT_MESSAGE" value="Pharmacist/Nurse/Doctor Dashboard All Done" />
+    <MESSAGE value="Admin/Billing Officer/ Patient Billing Reports All Done" />
+    <MESSAGE value=" Patient Billing Reports" />
+    <option name="LAST_COMMIT_MESSAGE" value=" Patient Billing Reports" />
   </component>
 </project>

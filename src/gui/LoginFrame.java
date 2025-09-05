@@ -27,7 +27,6 @@ public class LoginFrame extends javax.swing.JFrame {
     public LoginFrame() {
         initComponents();
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -337,31 +336,31 @@ public class LoginFrame extends javax.swing.JFrame {
         if (auth.isAuthenticated()) {
     System.out.println("Successfully login");
 
-    switch (auth.getAuthType()) {
-        case Admin -> {
-            this.dispose();
-            new AdminDashboardFrame().setVisible(true);
+   switch (auth.getAuthType()) {
+                case Admin -> {
+                    this.dispose();
+                    new AdminDashboardFrame(username, auth.getAuthType()).setVisible(true);
         }
-        case Doctor -> {
-            this.dispose();
-            new DoctorDashboardFrame().setVisible(true);
-        }
-        case Nurse -> {
-            this.dispose();
-            new NurseDashboardFrame().setVisible(true);
-        }
-        case Pharmacist -> {
-            this.dispose();
-            new PharmacistDashboardFrame().setVisible(true);
-        }
-        case BillingOfficer -> {
-            this.dispose();
-            new BillingOfficerDashboardFrame().setVisible(true);
-        }
-        case Patient -> {
-            this.dispose();
-            new PatientDashboardFrame().setVisible(true);
-        }
+                case Doctor -> {
+                    this.dispose();
+                    new DoctorDashboardFrame(username, auth.getAuthType()).setVisible(true);
+                }
+                case Nurse -> {
+                    this.dispose();
+                    new NurseDashboardFrame(username, auth.getAuthType()).setVisible(true);
+                }
+                case Pharmacist -> {
+                    this.dispose();
+                    new PharmacistDashboardFrame(username, auth.getAuthType()).setVisible(true);
+                }
+                case BillingOfficer -> {
+                    this.dispose();
+                    new BillingOfficerDashboardFrame(username, auth.getAuthType()).setVisible(true);
+                }
+                case Patient -> {
+                    this.dispose();
+                    new PatientDashboardFrame(username, auth.getAuthType()).setVisible(true);
+                }
         default -> JOptionPane.showMessageDialog(this, "Unknown User Type!");
     }
 
