@@ -4,10 +4,14 @@
  */
 package panel;
 
+import java.awt.Font;
+import java.awt.Graphics2D;
+import java.awt.print.Printable;
+import java.awt.print.PrinterException;
+import java.awt.print.PrinterJob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import util.Database;
@@ -42,6 +46,7 @@ public class Billing extends javax.swing.JPanel {
                 rs.getString("patient_name"),
                 rs.getString("doctor_name"),
                 rs.getDouble("total_amount"),
+                rs.getDate("date_issued"),
                 rs.getString("payment_status")
             };
             model.addRow(row);
@@ -93,6 +98,7 @@ public class Billing extends javax.swing.JPanel {
         jLabel11 = new javax.swing.JLabel();
         jTextField9 = new javax.swing.JTextField();
         jComboBox2 = new javax.swing.JComboBox<>();
+        printBtn = new javax.swing.JButton();
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -254,6 +260,15 @@ public class Billing extends javax.swing.JPanel {
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Paid", "Pending", "Rejected" }));
 
+        printBtn.setBackground(new java.awt.Color(102, 153, 255));
+        printBtn.setForeground(new java.awt.Color(255, 255, 255));
+        printBtn.setText("Print");
+        printBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                printBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -283,7 +298,10 @@ public class Billing extends javax.swing.JPanel {
                 .addGap(28, 28, 28)
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(printBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTextField8, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE))
+                .addGap(16, 16, 16))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1))
@@ -304,8 +322,9 @@ public class Billing extends javax.swing.JPanel {
                     .addComponent(jLabel10)
                     .addComponent(jLabel11)
                     .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(22, 22, 22)
+                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(printBtn))
+                .addGap(21, 21, 21)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(65, Short.MAX_VALUE))
         );
@@ -339,7 +358,7 @@ public class Billing extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 824, Short.MAX_VALUE)
+            .addGap(0, 840, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -361,105 +380,78 @@ public class Billing extends javax.swing.JPanel {
     }//GEN-LAST:event_jTextField7ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-         String patientName = jTextField2.getText().trim();
-    String doctorName = jTextField3.getText().trim();
-    String totalAmountStr = jTextField4.getText().trim();
+         String patientName = jTextField2.getText();
+    String doctorName = jTextField3.getText();
+    String totalAmount = jTextField4.getText();
     String paymentStatus = jComboBox1.getSelectedItem().toString();
 
-    // Validations
-    if (patientName.isEmpty() || doctorName.isEmpty() || totalAmountStr.isEmpty()) {
-        JOptionPane.showMessageDialog(this, "Please fill all fields!");
-        return;
-    }
-
-    double totalAmount;
-    try {
-        totalAmount = Double.parseDouble(totalAmountStr);
-    } catch (NumberFormatException e) {
-        JOptionPane.showMessageDialog(this, "Total Amount must be a number!");
-        return;
-    }
+    java.util.Date utilDate = jDateChooser1.getDate();
+    java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
 
     try {
         Connection conn = Database.getInstance().getConnection();
-        String sql = "INSERT INTO admin_billing (patient_name, doctor_name, total_amount, payment_status) VALUES (?, ?, ?, ?)";
-        PreparedStatement pst = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+        String sql = "INSERT INTO admin_billing (patient_name, doctor_name, total_amount, date_issued, payment_status) VALUES (?, ?, ?, ?, ?)";
+        PreparedStatement pst = conn.prepareStatement(sql);
         pst.setString(1, patientName);
         pst.setString(2, doctorName);
-        pst.setDouble(3, totalAmount);
-        pst.setString(4, paymentStatus);
+        pst.setString(3, totalAmount);
+        pst.setDate(4, sqlDate);
+        pst.setString(5, paymentStatus);
 
-        int rows = pst.executeUpdate();
-        if (rows > 0) {
-            JOptionPane.showMessageDialog(this, "Billing record added successfully!");
-            loadBilling(); // refresh table
-        }
-
-        pst.close();
+        pst.executeUpdate();
+        JOptionPane.showMessageDialog(this, "Billing record added successfully!");
+        loadBilling();
+ 
     } catch (Exception e) {
-        JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+        JOptionPane.showMessageDialog(this, e.getMessage());
     }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-          int row = jTable1.getSelectedRow();
-    if (row < 0) {
+         int selectedRow = jTable1.getSelectedRow();
+    if (selectedRow == -1) {
         JOptionPane.showMessageDialog(this, "Please select a row to update.");
         return;
     }
 
-    int billingId = (int) jTable1.getValueAt(row, 0); // billing_id from table
-    String patientName = jTextField2.getText().trim();
-    String doctorName = jTextField3.getText().trim();
-    String totalAmountStr = jTextField4.getText().trim();
+    int billingId = Integer.parseInt(jTable1.getValueAt(selectedRow, 0).toString());
+
+    String patientName = jTextField2.getText();
+    String doctorName = jTextField3.getText();
+    String totalAmount = jTextField4.getText();
     String paymentStatus = jComboBox1.getSelectedItem().toString();
 
-    if (patientName.isEmpty() || doctorName.isEmpty() || totalAmountStr.isEmpty()) {
-        JOptionPane.showMessageDialog(this, "Please fill all fields!");
-        return;
-    }
-
-    double totalAmount;
-    try {
-        totalAmount = Double.parseDouble(totalAmountStr);
-    } catch (NumberFormatException e) {
-        JOptionPane.showMessageDialog(this, "Total Amount must be a number!");
-        return;
-    }
+    java.util.Date utilDate = jDateChooser1.getDate();
+    java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
 
     try {
         Connection conn = Database.getInstance().getConnection();
-        String sql = "UPDATE admin_billing SET patient_name=?, doctor_name=?, total_amount=?, payment_status=? WHERE billing_id=?";
+        String sql = "UPDATE admin_billing SET patient_name=?, doctor_name=?, total_amount=?, date_issued=?, payment_status=? WHERE billing_id=?";
         PreparedStatement pst = conn.prepareStatement(sql);
         pst.setString(1, patientName);
         pst.setString(2, doctorName);
-        pst.setDouble(3, totalAmount);
-        pst.setString(4, paymentStatus);
-        pst.setInt(5, billingId);
+        pst.setString(3, totalAmount);
+        pst.setDate(4, sqlDate);
+        pst.setString(5, paymentStatus);
+        pst.setInt(6, billingId);
 
-        int rows = pst.executeUpdate();
-        if (rows > 0) {
-            JOptionPane.showMessageDialog(this, "Billing record updated successfully!");
-            loadBilling(); // refresh table
-        }
+        pst.executeUpdate();
+        JOptionPane.showMessageDialog(this, "Billing record updated successfully!");
 
-        pst.close();
+         loadBilling();
     } catch (Exception e) {
-        JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+        JOptionPane.showMessageDialog(this, e.getMessage());
     }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        int row = jTable1.getSelectedRow();
-    if (row < 0) {
+       int selectedRow = jTable1.getSelectedRow();
+    if (selectedRow == -1) {
         JOptionPane.showMessageDialog(this, "Please select a row to delete.");
         return;
     }
 
-    int billingId = (int) jTable1.getValueAt(row, 0);
-
-    int confirm = JOptionPane.showConfirmDialog(this, "Are you sure you want to delete this billing record?", "Confirm Delete", JOptionPane.YES_NO_OPTION);
-    if (confirm != JOptionPane.YES_OPTION) return;
+    int billingId = Integer.parseInt(jTable1.getValueAt(selectedRow, 0).toString());
 
     try {
         Connection conn = Database.getInstance().getConnection();
@@ -467,32 +459,115 @@ public class Billing extends javax.swing.JPanel {
         PreparedStatement pst = conn.prepareStatement(sql);
         pst.setInt(1, billingId);
 
-        int rows = pst.executeUpdate();
-        if (rows > 0) {
-            JOptionPane.showMessageDialog(this, "Billing record deleted successfully!");
-            loadBilling(); 
-        }
+        pst.executeUpdate();
+        JOptionPane.showMessageDialog(this, "Billing record deleted successfully!");
 
-        pst.close();
+        loadBilling();
     } catch (Exception e) {
-        JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+        JOptionPane.showMessageDialog(this, e.getMessage());
     }
+
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
-    public void mouseClicked(java.awt.event.MouseEvent evt) {
-        int row = jTable1.getSelectedRow();
-        if (row >= 0) {
-            jTextField2.setText(jTable1.getValueAt(row, 1).toString()); // patient_name
-            jTextField3.setText(jTable1.getValueAt(row, 2).toString()); // doctor_name
-            jTextField4.setText(jTable1.getValueAt(row, 3).toString()); // total_amount
-            jComboBox1.setSelectedItem(jTable1.getValueAt(row, 4).toString()); // payment_status
+
+int selectedRow = jTable1.getSelectedRow();
+    if (selectedRow != -1) {
+        jTextField2.setText(jTable1.getValueAt(selectedRow, 1).toString());
+        jTextField3.setText(jTable1.getValueAt(selectedRow, 2).toString());
+        jTextField4.setText(jTable1.getValueAt(selectedRow, 3).toString());
+
+        Object dateObj = jTable1.getValueAt(selectedRow, 4);
+        if (dateObj != null) {
+            try {
+                if (dateObj instanceof java.sql.Date) {
+                    jDateChooser1.setDate((java.sql.Date) dateObj);
+                } else if (dateObj instanceof String) {
+                    java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd");
+                    java.util.Date parsedDate = sdf.parse(dateObj.toString());
+                    jDateChooser1.setDate(parsedDate);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        String paymentStatus = jTable1.getValueAt(selectedRow, 5).toString().trim();
+        for (int i = 0; i < jComboBox1.getItemCount(); i++) {
+            if (jComboBox1.getItemAt(i).toString().equalsIgnoreCase(paymentStatus)) {
+                jComboBox1.setSelectedIndex(i);
+                break;
+            }
         }
     }
-});
 
     }//GEN-LAST:event_jTable1MouseClicked
+
+    private void printBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printBtnActionPerformed
+   int selectedRow = jTable1.getSelectedRow();
+
+    if (selectedRow == -1) {
+        JOptionPane.showMessageDialog(this, "Please select a patient record to print.");
+        return;
+    }
+
+    // Collect data from table
+    String patientName   = jTable1.getValueAt(selectedRow, 1).toString();
+    String doctorName    = jTable1.getValueAt(selectedRow, 2).toString();
+    String totalAmount   = jTable1.getValueAt(selectedRow, 3).toString();
+    String dateIssued    = jTable1.getValueAt(selectedRow, 4).toString();
+    String paymentStatus = jTable1.getValueAt(selectedRow, 5).toString();
+
+    // Build Report
+    StringBuilder report = new StringBuilder();
+    report.append("==================================================\n");
+    report.append("                 GlobeMed Hospital                \n");
+    report.append("            New Town, Anuradhapura                \n");
+    report.append("        Patient Billing & Payment Report          \n");
+    report.append("==================================================\n\n");
+    report.append("Patient Name   : ").append(patientName).append("\n");
+    report.append("Doctor Name    : ").append(doctorName).append("\n");
+    report.append("Total Amount   : Rs. ").append(totalAmount).append("\n");
+    report.append("Date Issued    : ").append(dateIssued).append("\n");
+    report.append("Payment Status : ").append(paymentStatus).append("\n\n");
+    report.append("--------------------------------------------------\n");
+    report.append("For assistance, please contact the billing        \n");
+    report.append("department at GlobeMed Hospital.                  \n");
+    report.append("--------------------------------------------------\n");
+    report.append("      Thank you for trusting GlobeMed!            \n");
+    report.append("==================================================\n");
+    report.append("Contact: (0252077777 / 0773480439)                \n");
+    report.append("==================================================\n");
+
+    // Printer job
+    PrinterJob job = PrinterJob.getPrinterJob();
+    job.setPrintable((graphics, pageFormat, pageIndex) -> {
+        if (pageIndex > 0) {
+            return Printable.NO_SUCH_PAGE;
+        }
+        Graphics2D g2d = (Graphics2D) graphics;
+        g2d.translate(pageFormat.getImageableX(), pageFormat.getImageableY());
+
+        graphics.setFont(new Font("Monospaced", Font.PLAIN, 12));
+
+        int y = 100;
+        for (String line : report.toString().split("\n")) {
+            graphics.drawString(line, 100, y);
+            y += 15;
+        }
+
+        return Printable.PAGE_EXISTS;
+    });
+
+    boolean doPrint = job.printDialog();
+    if (doPrint) {
+        try {
+            job.print();
+        } catch (PrinterException e) {
+            JOptionPane.showMessageDialog(this, "Printing Error: " + e.getMessage());
+        }
+    }
+    }//GEN-LAST:event_printBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -526,5 +601,6 @@ public class Billing extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
+    private javax.swing.JButton printBtn;
     // End of variables declaration//GEN-END:variables
 }

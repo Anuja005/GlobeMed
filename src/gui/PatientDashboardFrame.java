@@ -34,7 +34,7 @@ public class PatientDashboardFrame extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         appointmentManagement1 = new panel.AppointmentManagement();
         jPanel3 = new javax.swing.JPanel();
-        patient_BillingManagementPanel1 = new panel.Patient_BillingManagementPanel();
+        patientBillingPanel1 = new panel.PatientBillingPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -103,13 +103,13 @@ public class PatientDashboardFrame extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(patient_BillingManagementPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 877, Short.MAX_VALUE))
+                .addComponent(patientBillingPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 877, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(patient_BillingManagementPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 48, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(patientBillingPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jTabbedPane1.addTab("", new javax.swing.ImageIcon(getClass().getResource("/resources/Patient/Billing.png")), jPanel3); // NOI18N
@@ -177,6 +177,6 @@ public class PatientDashboardFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private panel.Patient_BillingManagementPanel patient_BillingManagementPanel1;
+    private panel.PatientBillingPanel patientBillingPanel1;
     // End of variables declaration//GEN-END:variables
 }
