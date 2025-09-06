@@ -4,6 +4,8 @@
  */
 package panel;
 
+import dto.Patient;
+import dto.PatientHistory;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -60,6 +62,7 @@ jTextField7.addKeyListener(new java.awt.event.KeyAdapter() {
 
 }
 
+    private PatientHistory patientHistory = new PatientHistory();
     
    private void loadPatients() {
     try {
@@ -159,6 +162,7 @@ private void searchPatients() {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        undoBtn = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -232,6 +236,14 @@ private void searchPatients() {
             }
         });
 
+        undoBtn.setForeground(new java.awt.Color(255, 255, 255));
+        undoBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/Admin/undo.png"))); // NOI18N
+        undoBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                undoBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -253,7 +265,9 @@ private void searchPatients() {
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addGap(30, 30, 30)
+                .addComponent(undoBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel8)
                 .addGap(22, 22, 22))
         );
@@ -261,17 +275,20 @@ private void searchPatients() {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(16, 16, 16)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel8)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel5)
-                        .addComponent(jLabel6)
-                        .addComponent(jLabel7)))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(undoBtn)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel8)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel5)
+                                .addComponent(jLabel6)
+                                .addComponent(jLabel7)))
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -387,53 +404,57 @@ private void searchPatients() {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String name = jTextField2.getText().trim();
-        String mobile = jTextField3.getText().trim();
-        String address = jTextField4.getText().trim();
+         String name = jTextField2.getText().trim();
+    String mobile = jTextField3.getText().trim();
+    String address = jTextField4.getText().trim();
 
-if (name.isEmpty()) {
-    JOptionPane.showMessageDialog(this, "Please enter Patient Name");
-    return; 
-}
-if (mobile.isEmpty()) {
-    JOptionPane.showMessageDialog(this, "Please enter Mobile Number");
-    return;
-}
-if (!mobile.matches("\\d{10}")) { 
-    JOptionPane.showMessageDialog(this, "Invalid Mobile Number. Must be 10 digits.");
-    return;
-}
-if (address.isEmpty()) {
-    JOptionPane.showMessageDialog(this, "Please enter Address");
-    return;
-}
-
-try {
-    Connection conn = Database.getInstance().getConnection();
-    String sql = "INSERT INTO admin_patient (patient_name, mobile, address) VALUES (?, ?, ?)";
-    PreparedStatement pst = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-    pst.setString(1, name);
-    pst.setString(2, mobile);
-    pst.setString(3, address);
-
-    int rows = pst.executeUpdate();
-
-    if (rows > 0) {
-        ResultSet rs = pst.getGeneratedKeys();
-        if (rs.next()) {
-            int generatedId = rs.getInt(1);
-            jTextField1.setText(String.valueOf(generatedId)); // show new patient_id
-        }
-        JOptionPane.showMessageDialog(this, "Patient Added Successfully!");
+    if (name.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Please enter Patient Name");
+        return; 
     }
-} catch (Exception e) {
-    JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
-}
-loadPatients();
+    if (mobile.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Please enter Mobile Number");
+        return;
+    }
+    if (!mobile.matches("\\d{10}")) { 
+        JOptionPane.showMessageDialog(this, "Invalid Mobile Number. Must be 10 digits.");
+        return;
+    }
+    if (address.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Please enter Address");
+        return;
+    }
+
+    try {
+        Connection conn = Database.getInstance().getConnection();
+        String sql = "INSERT INTO admin_patient (patient_name, mobile, address) VALUES (?, ?, ?)";
+        PreparedStatement pst = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+        pst.setString(1, name);
+        pst.setString(2, mobile);
+        pst.setString(3, address);
+
+        int rows = pst.executeUpdate();
+
+        if (rows > 0) {
+            ResultSet rs = pst.getGeneratedKeys();
+            if (rs.next()) {
+                int generatedId = rs.getInt(1);
+                jTextField1.setText(String.valueOf(generatedId)); 
+
+                Patient patient = new Patient(generatedId, name, mobile, address);
+                patientHistory.save(patient);
+            }
+            JOptionPane.showMessageDialog(this, "Patient Added Successfully!");
+        }
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+    }
+    loadPatients();
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+                                      
     String idText = jTextField1.getText().trim();
     String name = jTextField2.getText().trim();
     String mobile = jTextField3.getText().trim();
@@ -470,7 +491,8 @@ loadPatients();
     try {
         Connection conn = Database.getInstance().getConnection();
 
-        String checkSql = "SELECT patient_id FROM admin_patient WHERE patient_id=?";
+        // ✅ Fetch OLD state before updating
+        String checkSql = "SELECT patient_name, mobile, address FROM admin_patient WHERE patient_id=?";
         PreparedStatement checkPst = conn.prepareStatement(checkSql);
         checkPst.setInt(1, id);
         ResultSet rs = checkPst.executeQuery();
@@ -480,6 +502,15 @@ loadPatients();
             return;
         }
 
+        String oldName = rs.getString("patient_name");
+        String oldMobile = rs.getString("mobile");
+        String oldAddress = rs.getString("address");
+
+        // ✅ Save OLD state into history (for undo)
+        Patient oldPatient = new Patient(id, oldName, oldMobile, oldAddress);
+        patientHistory.save(oldPatient);
+
+        // 🔄 Now perform the update
         String sql = "UPDATE admin_patient SET patient_name=?, mobile=?, address=? WHERE patient_id=?";
         PreparedStatement pst = conn.prepareStatement(sql);
         pst.setString(1, name);
@@ -503,10 +534,43 @@ loadPatients();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-       int id = Integer.parseInt(jTextField1.getText());
+     String idText = jTextField1.getText().trim();
+    if (idText.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Please select a patient from the table before deleting.");
+        return;
+    }
+
+    int id;
+    try {
+        id = Integer.parseInt(idText);
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "Invalid Patient ID.");
+        return;
+    }
 
     try {
         Connection conn = Database.getInstance().getConnection();
+
+        // ✅ Fetch patient details before deleting (for Undo/Memento)
+        String fetchSql = "SELECT patient_name, mobile, address FROM admin_patient WHERE patient_id=?";
+        PreparedStatement fetchPst = conn.prepareStatement(fetchSql);
+        fetchPst.setInt(1, id);
+        ResultSet rs = fetchPst.executeQuery();
+
+        if (!rs.next()) {
+            JOptionPane.showMessageDialog(this, "No patient found with ID " + id);
+            return;
+        }
+
+        String name = rs.getString("patient_name");
+        String mobile = rs.getString("mobile");
+        String address = rs.getString("address");
+
+        // ✅ Save deleted patient state before removal
+        Patient deletedPatient = new Patient(id, name, mobile, address);
+        patientHistory.save(deletedPatient);
+
+        // Now delete
         String sql = "DELETE FROM admin_patient WHERE patient_id=?";
         PreparedStatement pst = conn.prepareStatement(sql);
         pst.setInt(1, id);
@@ -521,11 +585,13 @@ loadPatients();
             jTextField3.setText("");
             jTextField4.setText("");
         } else {
-            JOptionPane.showMessageDialog(this, "No patient found with ID " + id);
+            JOptionPane.showMessageDialog(this, "Delete failed. Try again.");
         }
+
     } catch (Exception e) {
         JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
     }
+
     loadPatients();
 
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -554,6 +620,19 @@ loadPatients();
 });
     }//GEN-LAST:event_jLabel8MouseClicked
 
+    private void undoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_undoBtnActionPerformed
+ Patient lastPatient = patientHistory.undo();
+    if (lastPatient != null) {
+        jTextField1.setText(String.valueOf(lastPatient.getId()));
+        jTextField2.setText(lastPatient.getName());
+        jTextField3.setText(lastPatient.getMobile());
+        jTextField4.setText(lastPatient.getAddress());
+        JOptionPane.showMessageDialog(this, "Undo successful! Last patient restored to fields.");
+    } else {
+        JOptionPane.showMessageDialog(this, "No patient history to undo!");
+    }
+    }//GEN-LAST:event_undoBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -580,5 +659,6 @@ loadPatients();
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
+    private javax.swing.JButton undoBtn;
     // End of variables declaration//GEN-END:variables
 }
