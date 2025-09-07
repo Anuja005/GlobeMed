@@ -4,6 +4,10 @@
  */
 package panel;
 
+import dao.BillingDAO;
+import dto.BillingBridge;
+import dto.Billings;
+import dto.PatientBilling;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.print.Printable;
@@ -155,7 +159,7 @@ public class Billing extends javax.swing.JPanel {
 
         jLabel12.setText("Payment Status");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Paid", "Pending", "Rejected" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cash", "Card", "Insurance" }));
 
         jLabel9.setText("Date Issued");
 
@@ -380,28 +384,39 @@ public class Billing extends javax.swing.JPanel {
     }//GEN-LAST:event_jTextField7ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-         String patientName = jTextField2.getText();
+   String patientName = jTextField2.getText();
     String doctorName = jTextField3.getText();
     String totalAmount = jTextField4.getText();
     String paymentStatus = jComboBox1.getSelectedItem().toString();
-
     java.util.Date utilDate = jDateChooser1.getDate();
+
+    if (patientName.isEmpty() || doctorName.isEmpty() || totalAmount.isEmpty() || utilDate == null) {
+        JOptionPane.showMessageDialog(this, "Please fill all fields");
+        return;
+    }
+
     java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
 
     try {
-        Connection conn = Database.getInstance().getConnection();
-        String sql = "INSERT INTO admin_billing (patient_name, doctor_name, total_amount, date_issued, payment_status) VALUES (?, ?, ?, ?, ?)";
-        PreparedStatement pst = conn.prepareStatement(sql);
-        pst.setString(1, patientName);
-        pst.setString(2, doctorName);
-        pst.setString(3, totalAmount);
-        pst.setDate(4, sqlDate);
-        pst.setString(5, paymentStatus);
+      
+        Billings billings = new Billings(patientName, doctorName, totalAmount, sqlDate, paymentStatus);
+        BillingDAO billingDAO = new BillingDAO();
+        billingDAO.saveBilling(billings);
 
-        pst.executeUpdate();
+        dto.payment.PaymentStrategy strategy;
+        switch (paymentStatus) {
+            case "Cash" -> strategy = new dto.payment.CashPayment();
+            case "Card" -> strategy = new dto.payment.CardPayment();
+            case "Insurance" -> strategy = new dto.payment.InsurancePayment();
+            default -> strategy = new dto.payment.CashPayment();
+        }
+
+        BillingBridge billingBridge = new PatientBilling(strategy);
+        billingBridge.pay(totalAmount); // prints processing message
+
         JOptionPane.showMessageDialog(this, "Billing record added successfully!");
         loadBilling();
- 
+
     } catch (Exception e) {
         JOptionPane.showMessageDialog(this, e.getMessage());
     }
