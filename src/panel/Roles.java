@@ -4,6 +4,9 @@
  */
 package panel;
 
+import dao.StaffDAO;
+import dto.StaffGroup;
+import dto.StaffMember;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -315,7 +318,7 @@ public class Roles extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       String name = jTextField1.getText().trim();
+    String name = jTextField1.getText().trim();
     String role = jComboBox1.getSelectedItem().toString();
     String mobile = jTextField8.getText().trim();
     String address = jTextField9.getText().trim();
@@ -328,23 +331,18 @@ public class Roles extends javax.swing.JPanel {
     }
 
     try {
-        Connection conn = Database.getInstance().getConnection();
-        String sql = "INSERT INTO admin_roles (name, user_type, mobile, address, username, password) VALUES (?, ?, ?, ?, ?, ?)";
-        PreparedStatement pst = conn.prepareStatement(sql);
-        pst.setString(1, name);
-        pst.setString(2, role);
-        pst.setString(3, mobile);
-        pst.setString(4, address);
-        pst.setString(5, username);
-        pst.setString(6, password);
+        StaffMember staff = new StaffMember(name, role, mobile, address, username, password);
 
-        int rows = pst.executeUpdate();
-        if (rows > 0) {
-            JOptionPane.showMessageDialog(this, "Staff user added successfully!");
-            loadStaffUsers(); // refresh table
-        }
+        StaffDAO staffDAO = new StaffDAO();
+        staffDAO.saveStaff(staff);
 
-        pst.close();
+        StaffGroup roleGroup = new StaffGroup(role);
+        roleGroup.addStaff(staff);
+        roleGroup.showDetails(); 
+
+        JOptionPane.showMessageDialog(this, "Staff user added successfully!");
+        loadStaffUsers(); 
+
     } catch (Exception e) {
         JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
     }
