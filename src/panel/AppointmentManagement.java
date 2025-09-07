@@ -6,10 +6,10 @@
 ////Search still not finished
 package panel;
 
+import dto.AppointmentMediator;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -17,6 +17,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerDateModel;
 import javax.swing.table.DefaultTableModel;
+import model.Appointment;
 import util.Database;
 
 /**
@@ -401,7 +402,7 @@ if (date == null) {
     }//GEN-LAST:event_jDateChooser1MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-     String patientName = jTextField2.getText().trim();
+    String patientName = jTextField2.getText().trim();
     String doctorName = jTextField3.getText().trim();
     Date appointmentDate = jDateChooser1.getDate();
     Date appointmentTime = (Date) jSpinner1.getValue();
@@ -424,36 +425,17 @@ if (date == null) {
         return;
     }
 
-    try {
-   
-        java.sql.Date sqlDate = new java.sql.Date(appointmentDate.getTime());
+    SimpleDateFormat sdf = new SimpleDateFormat("hh:mm a");
+    String formattedTime = sdf.format(appointmentTime);
 
-        SimpleDateFormat sdf = new SimpleDateFormat("hh:mm a");
-        String formattedTime = sdf.format(appointmentTime);
+    Appointment appointment = new Appointment(patientName, doctorName, appointmentDate, formattedTime, status);
+    AppointmentMediator mediator = new AppointmentMediator();
 
-        Connection conn = Database.getInstance().getConnection();
-        String sql = "INSERT INTO admin_appointment (patient_name, doctor_name, appointment_date, appointment_time, status) "
-                   + "VALUES (?, ?, ?, ?, ?)";
-        PreparedStatement pst = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-
-        pst.setString(1, patientName);
-        pst.setString(2, doctorName);
-        pst.setDate(3, sqlDate);
-        pst.setString(4, formattedTime);
-        pst.setString(5, status);
-
-        int rows = pst.executeUpdate();
-
-        if (rows > 0) {
-            ResultSet rs = pst.getGeneratedKeys();
-            if (rs.next()) {
-                int generatedId = rs.getInt(1);
-                JOptionPane.showMessageDialog(this, "Appointment Added Successfully");
-                 loadAppointments();
-            }
-        }
-    } catch (Exception e) {
-        JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+    if (mediator.scheduleAppointment(appointment)) {
+        JOptionPane.showMessageDialog(this, "Appointment Added Successfully!");
+        loadAppointments(); // reload JTable
+    } else {
+        JOptionPane.showMessageDialog(this, "Failed to add appointment.");
     }
 
     }//GEN-LAST:event_jButton1ActionPerformed
