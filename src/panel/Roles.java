@@ -7,6 +7,11 @@ package panel;
 import dao.StaffDAO;
 import dto.StaffGroup;
 import dto.StaffMember;
+import java.awt.Font;
+import java.awt.Graphics2D;
+import java.awt.print.Printable;
+import java.awt.print.PrinterException;
+import java.awt.print.PrinterJob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -79,6 +84,7 @@ public class Roles extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        printBtn = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
@@ -131,28 +137,41 @@ public class Roles extends javax.swing.JPanel {
 
         jLabel7.setText("Username");
 
+        printBtn.setBackground(new java.awt.Color(51, 153, 255));
+        printBtn.setForeground(new java.awt.Color(255, 255, 255));
+        printBtn.setText("Print");
+        printBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                printBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(88, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(24, 24, 24)
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(24, 24, 24)
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(15, 15, 15)
+                        .addComponent(printBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -164,7 +183,8 @@ public class Roles extends javax.swing.JPanel {
                     .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5)
                     .addComponent(jLabel6)
-                    .addComponent(jLabel7))
+                    .addComponent(jLabel7)
+                    .addComponent(printBtn))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -439,6 +459,72 @@ public class Roles extends javax.swing.JPanel {
 
     }//GEN-LAST:event_jTable1MouseClicked
 
+    private void printBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printBtnActionPerformed
+        int selectedRow = jTable1.getSelectedRow();
+
+    if (selectedRow == -1) {
+        JOptionPane.showMessageDialog(this, "Please select a patient record to print.");
+        return;
+    }
+
+    String name   = jTable1.getValueAt(selectedRow, 1).toString();
+    String role    = jTable1.getValueAt(selectedRow, 2).toString();
+    String mobile   = jTable1.getValueAt(selectedRow, 3).toString();
+    String address    = jTable1.getValueAt(selectedRow, 4).toString();
+    String username = jTable1.getValueAt(selectedRow, 5).toString();
+    String password = jTable1.getValueAt(selectedRow, 6).toString();
+
+
+    StringBuilder report = new StringBuilder();
+    report.append("==================================================\n");
+    report.append("                 GlobeMed Hospital                \n");
+    report.append("            New Town, Anuradhapura                \n");
+    report.append("        Patient Billing & Payment Report          \n");
+    report.append("==================================================\n\n");
+    report.append("Name       : ").append(name).append("\n");
+    report.append("Role       : ").append(role).append("\n");
+    report.append("Mobile     : ").append(mobile).append("\n");
+    report.append("Address    : ").append(address).append("\n");
+    report.append("Username   : ").append(username).append("\n");
+    report.append("Password   : ").append(password).append("\n\n");
+    report.append("--------------------------------------------------\n");
+    report.append("For assistance, please contact the billing        \n");
+    report.append("department at GlobeMed Hospital.                  \n");
+    report.append("--------------------------------------------------\n");
+    report.append("      Thank you for trusting GlobeMed!            \n");
+    report.append("==================================================\n");
+    report.append("Contact: (0252077777 / 0773480439)                \n");
+    report.append("==================================================\n");
+
+    PrinterJob job = PrinterJob.getPrinterJob();
+    job.setPrintable((graphics, pageFormat, pageIndex) -> {
+        if (pageIndex > 0) {
+            return Printable.NO_SUCH_PAGE;
+        }
+        Graphics2D g2d = (Graphics2D) graphics;
+        g2d.translate(pageFormat.getImageableX(), pageFormat.getImageableY());
+
+        graphics.setFont(new Font("Monospaced", Font.PLAIN, 12));
+
+        int y = 100;
+        for (String line : report.toString().split("\n")) {
+            graphics.drawString(line, 100, y);
+            y += 15;
+        }
+
+        return Printable.PAGE_EXISTS;
+    });
+
+    boolean doPrint = job.printDialog();
+    if (doPrint) {
+        try {
+            job.print();
+        } catch (PrinterException e) {
+            JOptionPane.showMessageDialog(this, "Printing Error: " + e.getMessage());
+}
+}
+    }//GEN-LAST:event_printBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -468,5 +554,6 @@ public class Roles extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
+    private javax.swing.JButton printBtn;
     // End of variables declaration//GEN-END:variables
 }

@@ -25,7 +25,6 @@ import util.Database;
  * @author ANUJA
  */
 public class Billing extends javax.swing.JPanel {
-
     /**
      * Creates new form BillingAndInsurance
      */
@@ -217,7 +216,7 @@ public class Billing extends javax.swing.JPanel {
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(135, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jLabel6.setText("ID");
@@ -300,12 +299,13 @@ public class Billing extends javax.swing.JPanel {
                         .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
-                .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(printBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE))
-                .addGap(16, 16, 16))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(printBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(16, Short.MAX_VALUE))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1))
@@ -373,9 +373,9 @@ public class Billing extends javax.swing.JPanel {
             .addGap(0, 562, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap(7, Short.MAX_VALUE)
                     .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addContainerGap(8, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -526,14 +526,12 @@ int selectedRow = jTable1.getSelectedRow();
         return;
     }
 
-    // Collect data from table
     String patientName   = jTable1.getValueAt(selectedRow, 1).toString();
     String doctorName    = jTable1.getValueAt(selectedRow, 2).toString();
     String totalAmount   = jTable1.getValueAt(selectedRow, 3).toString();
     String dateIssued    = jTable1.getValueAt(selectedRow, 4).toString();
     String paymentStatus = jTable1.getValueAt(selectedRow, 5).toString();
 
-    // Build Report
     StringBuilder report = new StringBuilder();
     report.append("==================================================\n");
     report.append("                 GlobeMed Hospital                \n");
@@ -554,7 +552,6 @@ int selectedRow = jTable1.getSelectedRow();
     report.append("Contact: (0252077777 / 0773480439)                \n");
     report.append("==================================================\n");
 
-    // Printer job
     PrinterJob job = PrinterJob.getPrinterJob();
     job.setPrintable((graphics, pageFormat, pageIndex) -> {
         if (pageIndex > 0) {
@@ -580,9 +577,10 @@ int selectedRow = jTable1.getSelectedRow();
             job.print();
         } catch (PrinterException e) {
             JOptionPane.showMessageDialog(this, "Printing Error: " + e.getMessage());
-        }
-    }
+}
+}
     }//GEN-LAST:event_printBtnActionPerformed
+                               
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

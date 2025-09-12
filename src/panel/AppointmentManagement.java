@@ -7,6 +7,11 @@
 package panel;
 
 import dto.AppointmentMediator;
+import java.awt.Font;
+import java.awt.Graphics2D;
+import java.awt.print.Printable;
+import java.awt.print.PrinterException;
+import java.awt.print.PrinterJob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -113,6 +118,7 @@ jSpinner1.setEditor(de);
         jLabel12 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox<>();
+        printBtn = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -124,7 +130,7 @@ jSpinner1.setEditor(de);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 763, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 864, Short.MAX_VALUE)
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -293,14 +299,19 @@ jSpinner1.setEditor(de);
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Scheduled", "Completed", "Cancelled" }));
 
+        printBtn.setBackground(new java.awt.Color(51, 153, 255));
+        printBtn.setForeground(new java.awt.Color(255, 255, 255));
+        printBtn.setText("Print");
+        printBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                printBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -330,9 +341,14 @@ jSpinner1.setEditor(de);
                         .addComponent(jLabel14)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
-                    .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTextField8))
+                .addGap(15, 15, 15)
+                .addComponent(printBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -349,7 +365,8 @@ jSpinner1.setEditor(de);
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel14)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(printBtn))
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel10)
                         .addComponent(jLabel11)
@@ -357,7 +374,7 @@ jSpinner1.setEditor(de);
                         .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel12)))
-                .addGap(22, 22, 22)
+                .addGap(21, 21, 21)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(9, Short.MAX_VALUE))
         );
@@ -531,24 +548,87 @@ if (date == null) {
         int row = jTable1.getSelectedRow();
         if (row >= 0) { // check if a row is selected
             // Fill fields with selected row data
-            jTextField2.setText(jTable1.getValueAt(row, 1).toString()); // patient_name
-            jTextField3.setText(jTable1.getValueAt(row, 2).toString()); // doctor_name
-            jDateChooser1.setDate((Date) jTable1.getValueAt(row, 3));   // appointment_date
+            jTextField2.setText(jTable1.getValueAt(row, 1).toString()); 
+            jTextField3.setText(jTable1.getValueAt(row, 2).toString()); 
+            jDateChooser1.setDate((Date) jTable1.getValueAt(row, 3));   
             
             try {
                 SimpleDateFormat sdf = new SimpleDateFormat("hh:mm a");
                 Date time = sdf.parse(jTable1.getValueAt(row, 4).toString());
-                jSpinner1.setValue(time);                               // appointment_time
+                jSpinner1.setValue(time);                             
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
 
-            jComboBox1.setSelectedItem(jTable1.getValueAt(row, 5).toString()); // status
+            jComboBox1.setSelectedItem(jTable1.getValueAt(row, 5).toString()); 
         }
     }
 });
 
     }//GEN-LAST:event_jTable1MouseClicked
+
+    private void printBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printBtnActionPerformed
+        int selectedRow = jTable1.getSelectedRow();
+
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(this, "Please select a patient record to print.");
+            return;
+        }
+
+        String patientName   = jTable1.getValueAt(selectedRow, 1).toString();
+        String doctorName    = jTable1.getValueAt(selectedRow, 2).toString();
+        String appointmentDate   = jTable1.getValueAt(selectedRow, 3).toString();
+        String appointmentTime    = jTable1.getValueAt(selectedRow, 4).toString();
+        String status = jTable1.getValueAt(selectedRow, 5).toString();
+
+        StringBuilder report = new StringBuilder();
+        report.append("==================================================\n");
+        report.append("                 GlobeMed Hospital                \n");
+        report.append("            New Town, Anuradhapura                \n");
+        report.append("        Patient Billing & Payment Report          \n");
+        report.append("==================================================\n\n");
+        report.append("Patient Name       : ").append(patientName).append("\n");
+        report.append("Doctor Name        : ").append(doctorName).append("\n");
+        report.append("Appointment Date   : ").append(appointmentDate).append("\n");
+        report.append("Appointment Time   : ").append(appointmentTime).append("\n");
+        report.append("Status             : ").append(status).append("\n\n");
+        report.append("--------------------------------------------------\n");
+        report.append("For assistance, please contact the billing        \n");
+        report.append("department at GlobeMed Hospital.                  \n");
+        report.append("--------------------------------------------------\n");
+        report.append("      Thank you for trusting GlobeMed!            \n");
+        report.append("==================================================\n");
+        report.append("Contact: (0252077777 / 0773480439)                \n");
+        report.append("==================================================\n");
+
+        PrinterJob job = PrinterJob.getPrinterJob();
+        job.setPrintable((graphics, pageFormat, pageIndex) -> {
+            if (pageIndex > 0) {
+                return Printable.NO_SUCH_PAGE;
+            }
+            Graphics2D g2d = (Graphics2D) graphics;
+            g2d.translate(pageFormat.getImageableX(), pageFormat.getImageableY());
+
+            graphics.setFont(new Font("Monospaced", Font.PLAIN, 12));
+
+            int y = 100;
+            for (String line : report.toString().split("\n")) {
+                graphics.drawString(line, 100, y);
+                y += 15;
+            }
+
+            return Printable.PAGE_EXISTS;
+        });
+
+        boolean doPrint = job.printDialog();
+        if (doPrint) {
+            try {
+                job.print();
+            } catch (PrinterException e) {
+                JOptionPane.showMessageDialog(this, "Printing Error: " + e.getMessage());
+            }
+        }
+    }//GEN-LAST:event_printBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -585,5 +665,6 @@ if (date == null) {
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
+    private javax.swing.JButton printBtn;
     // End of variables declaration//GEN-END:variables
 }
