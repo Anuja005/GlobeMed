@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1a632612-c32b-4c35-a261-bf85e30b0512" name="Changes" comment="All Reports setup for Admin part" />
+    <list default="true" id="1a632612-c32b-4c35-a261-bf85e30b0512" name="Changes" comment="Reports Titles setup for All Dashboards" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -297,7 +297,15 @@
       <option name="project" value="LOCAL" />
       <updated>1757665729914</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Reports Titles setup for All Dashboards">
+      <option name="closed" value="true" />
+      <created>1757756875948</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1757756875948</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -323,6 +331,7 @@
     <MESSAGE value="All Reports setup for Admin" />
     <MESSAGE value="All Reports setup for Admin (other file)" />
     <MESSAGE value="All Reports setup for Admin part" />
-    <option name="LAST_COMMIT_MESSAGE" value="All Reports setup for Admin part" />
+    <MESSAGE value="Reports Titles setup for All Dashboards" />
+    <option name="LAST_COMMIT_MESSAGE" value="Reports Titles setup for All Dashboards" />
   </component>
 </project>

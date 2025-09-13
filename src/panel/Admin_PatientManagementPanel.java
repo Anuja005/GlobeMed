@@ -6,11 +6,8 @@ package panel;
 
 import dto.Patient;
 import dto.PatientHistory;
-import java.awt.Font;
-import java.awt.Graphics2D;
-import java.awt.print.Printable;
-import java.awt.print.PrinterException;
-import java.awt.print.PrinterJob;
+import dto.reports.PatientReport;
+import dto.reports.PrintReportVisitor;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -661,55 +658,15 @@ private void searchPatients() {
         return;
     }
 
-    String patientName   = jTable1.getValueAt(selectedRow, 1).toString();
-    String mobile    = jTable1.getValueAt(selectedRow, 2).toString();
-    String address   = jTable1.getValueAt(selectedRow, 3).toString();
+    String patientName = jTable1.getValueAt(selectedRow, 1).toString();
+    String mobile      = jTable1.getValueAt(selectedRow, 2).toString();
+    String address     = jTable1.getValueAt(selectedRow, 3).toString();
 
-    StringBuilder report = new StringBuilder();
-    report.append("==================================================\n");
-    report.append("                 GlobeMed Hospital                \n");
-    report.append("            New Town, Anuradhapura                \n");
-    report.append("                 Patient Report          \n");
-    report.append("==================================================\n\n");
-    report.append("Patient Name   : ").append(patientName).append("\n");
-    report.append("Mobile         : ").append(mobile).append("\n");
-    report.append("Address        : ").append(address).append("\n");
-    report.append("--------------------------------------------------\n");
-    report.append("For assistance, please contact the billing        \n");
-    report.append("department at GlobeMed Hospital.                  \n");
-    report.append("--------------------------------------------------\n");
-    report.append("      Thank you for trusting GlobeMed!            \n");
-    report.append("==================================================\n");
-    report.append("Contact: (0252077777 / 0773480439)                \n");
-    report.append("==================================================\n");
+    //Visitor used
+    PatientReport report = new PatientReport(patientName, mobile, address);
+    PrintReportVisitor visitor = new PrintReportVisitor();
+    report.accept(visitor);
 
-    PrinterJob job = PrinterJob.getPrinterJob();
-    job.setPrintable((graphics, pageFormat, pageIndex) -> {
-        if (pageIndex > 0) {
-            return Printable.NO_SUCH_PAGE;
-        }
-        Graphics2D g2d = (Graphics2D) graphics;
-        g2d.translate(pageFormat.getImageableX(), pageFormat.getImageableY());
-
-        graphics.setFont(new Font("Monospaced", Font.PLAIN, 12));
-
-        int y = 100;
-        for (String line : report.toString().split("\n")) {
-            graphics.drawString(line, 100, y);
-            y += 15;
-        }
-
-        return Printable.PAGE_EXISTS;
-    });
-
-    boolean doPrint = job.printDialog();
-    if (doPrint) {
-        try {
-            job.print();
-        } catch (PrinterException e) {
-            JOptionPane.showMessageDialog(this, "Printing Error: " + e.getMessage());
-}
-}
     }//GEN-LAST:event_printBtnActionPerformed
 
 
