@@ -4,6 +4,11 @@
  */
 package panel;
 
+import java.awt.Font;
+import java.awt.Graphics2D;
+import java.awt.print.Printable;
+import java.awt.print.PrinterException;
+import java.awt.print.PrinterJob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -80,6 +85,7 @@ public class DoctorPatientPanel extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        printBtn = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -148,6 +154,15 @@ public class DoctorPatientPanel extends javax.swing.JPanel {
 
         jLabel7.setText("Mobile");
 
+        printBtn.setBackground(new java.awt.Color(51, 153, 255));
+        printBtn.setForeground(new java.awt.Color(255, 255, 255));
+        printBtn.setText("Print");
+        printBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                printBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -165,7 +180,9 @@ public class DoctorPatientPanel extends javax.swing.JPanel {
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(56, 133, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(printBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(20, Short.MAX_VALUE))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1))
@@ -180,10 +197,11 @@ public class DoctorPatientPanel extends javax.swing.JPanel {
                     .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5)
                     .addComponent(jLabel6)
-                    .addComponent(jLabel7))
+                    .addComponent(jLabel7)
+                    .addComponent(printBtn))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         jLabel2.setText("Age");
@@ -284,7 +302,7 @@ public class DoctorPatientPanel extends javax.swing.JPanel {
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -322,7 +340,7 @@ public class DoctorPatientPanel extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 522, Short.MAX_VALUE)
+            .addGap(0, 523, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -443,6 +461,71 @@ public class DoctorPatientPanel extends javax.swing.JPanel {
     }
     }//GEN-LAST:event_jTable1MouseClicked
 
+    private void printBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printBtnActionPerformed
+        int selectedRow = jTable1.getSelectedRow();
+
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(this, "Please select a patient record to print.");
+            return;
+        }
+
+        String patientName   = jTable1.getValueAt(selectedRow, 1).toString();
+        String age   = jTable1.getValueAt(selectedRow, 2).toString();
+        String mobile    = jTable1.getValueAt(selectedRow, 3).toString();
+        String address   = jTable1.getValueAt(selectedRow, 4).toString();
+        String diagnosis   = jTable1.getValueAt(selectedRow, 5).toString();
+        String lastVisitDate   = jTable1.getValueAt(selectedRow, 6).toString();
+
+        StringBuilder report = new StringBuilder();
+        report.append("==================================================\n");
+        report.append("                 GlobeMed Hospital                \n");
+        report.append("            New Town, Anuradhapura                \n");
+        report.append("                 Patient Report          \n");
+        report.append("==================================================\n\n");
+        report.append("Patient Name       : ").append(patientName).append("\n");
+        report.append("Age                : ").append(age).append("\n");
+        report.append("Mobile             : ").append(mobile).append("\n");
+        report.append("Address            : ").append(address).append("\n");
+        report.append("Diagnosis          : ").append(diagnosis).append("\n");
+        report.append("Last Visit Date    : ").append(lastVisitDate).append("\n");
+        report.append("--------------------------------------------------\n");
+        report.append("For assistance, please contact the billing        \n");
+        report.append("department at GlobeMed Hospital.                  \n");
+        report.append("--------------------------------------------------\n");
+        report.append("      Thank you for trusting GlobeMed!            \n");
+        report.append("==================================================\n");
+        report.append("Contact: (0252077777 / 0773480439)                \n");
+        report.append("==================================================\n");
+
+        PrinterJob job = PrinterJob.getPrinterJob();
+        job.setPrintable((graphics, pageFormat, pageIndex) -> {
+            if (pageIndex > 0) {
+                return Printable.NO_SUCH_PAGE;
+            }
+            Graphics2D g2d = (Graphics2D) graphics;
+            g2d.translate(pageFormat.getImageableX(), pageFormat.getImageableY());
+
+            graphics.setFont(new Font("Monospaced", Font.PLAIN, 12));
+
+            int y = 100;
+            for (String line : report.toString().split("\n")) {
+                graphics.drawString(line, 100, y);
+                y += 15;
+            }
+
+            return Printable.PAGE_EXISTS;
+        });
+
+        boolean doPrint = job.printDialog();
+        if (doPrint) {
+            try {
+                job.print();
+            } catch (PrinterException e) {
+                JOptionPane.showMessageDialog(this, "Printing Error: " + e.getMessage());
+            }
+        }
+    }//GEN-LAST:event_printBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -473,5 +556,6 @@ public class DoctorPatientPanel extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
+    private javax.swing.JButton printBtn;
     // End of variables declaration//GEN-END:variables
 }

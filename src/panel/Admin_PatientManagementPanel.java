@@ -669,7 +669,7 @@ private void searchPatients() {
     report.append("==================================================\n");
     report.append("                 GlobeMed Hospital                \n");
     report.append("            New Town, Anuradhapura                \n");
-    report.append("        Patient Billing & Payment Report          \n");
+    report.append("                 Patient Report          \n");
     report.append("==================================================\n\n");
     report.append("Patient Name   : ").append(patientName).append("\n");
     report.append("Mobile         : ").append(mobile).append("\n");

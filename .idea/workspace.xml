@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1a632612-c32b-4c35-a261-bf85e30b0512" name="Changes" comment="Reports Dashboard Setup" />
+    <list default="true" id="1a632612-c32b-4c35-a261-bf85e30b0512" name="Changes" comment="All Reports setup for Admin part" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -273,7 +273,31 @@
       <option name="project" value="LOCAL" />
       <updated>1757356648650</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="All Reports setup for Admin">
+      <option name="closed" value="true" />
+      <created>1757665671592</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1757665671592</updated>
+    </task>
+    <task id="LOCAL-00026" summary="All Reports setup for Admin (other file)">
+      <option name="closed" value="true" />
+      <created>1757665705028</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1757665705028</updated>
+    </task>
+    <task id="LOCAL-00027" summary="All Reports setup for Admin part">
+      <option name="closed" value="true" />
+      <created>1757665729914</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1757665729914</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -296,6 +320,9 @@
     <MESSAGE value="Billing using Bridge Pattern" />
     <MESSAGE value="Staff Roles setup using Composite Pattern" />
     <MESSAGE value="Reports Dashboard Setup" />
-    <option name="LAST_COMMIT_MESSAGE" value="Reports Dashboard Setup" />
+    <MESSAGE value="All Reports setup for Admin" />
+    <MESSAGE value="All Reports setup for Admin (other file)" />
+    <MESSAGE value="All Reports setup for Admin part" />
+    <option name="LAST_COMMIT_MESSAGE" value="All Reports setup for Admin part" />
   </component>
 </project>

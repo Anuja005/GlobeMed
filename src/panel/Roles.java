@@ -234,7 +234,7 @@ public class Roles extends javax.swing.JPanel {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addGap(10, 10, 10)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel9)
                     .addComponent(jLabel2)
@@ -479,7 +479,7 @@ public class Roles extends javax.swing.JPanel {
     report.append("==================================================\n");
     report.append("                 GlobeMed Hospital                \n");
     report.append("            New Town, Anuradhapura                \n");
-    report.append("        Patient Billing & Payment Report          \n");
+    report.append("                  Roles Report          \n");
     report.append("==================================================\n\n");
     report.append("Name       : ").append(name).append("\n");
     report.append("Role       : ").append(role).append("\n");

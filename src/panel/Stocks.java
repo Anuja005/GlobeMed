@@ -466,7 +466,7 @@ public class Stocks extends javax.swing.JPanel {
         pst.close();
     } catch (Exception e) {
         JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
-    }
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -533,7 +533,7 @@ public class Stocks extends javax.swing.JPanel {
         report.append("==================================================\n");
         report.append("                 GlobeMed Hospital                \n");
         report.append("            New Town, Anuradhapura                \n");
-        report.append("        Patient Billing & Payment Report          \n");
+        report.append("                 Stock Report          \n");
         report.append("==================================================\n\n");
         report.append("Medicine Name   : ").append(medicineName).append("\n");
         report.append("Quantity        : ").append(quantity).append("\n");

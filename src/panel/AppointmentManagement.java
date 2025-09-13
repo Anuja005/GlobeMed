@@ -585,7 +585,7 @@ if (date == null) {
         report.append("==================================================\n");
         report.append("                 GlobeMed Hospital                \n");
         report.append("            New Town, Anuradhapura                \n");
-        report.append("        Patient Billing & Payment Report          \n");
+        report.append("          Patient Appointment Report          \n");
         report.append("==================================================\n\n");
         report.append("Patient Name       : ").append(patientName).append("\n");
         report.append("Doctor Name        : ").append(doctorName).append("\n");

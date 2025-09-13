@@ -4,12 +4,18 @@
  */
 package panel;
 
+import java.awt.Font;
+import java.awt.Graphics2D;
+import java.awt.print.Printable;
+import java.awt.print.PrinterException;
+import java.awt.print.PrinterJob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import util.Database;
+
 /**
  *
  * @author ANUJA
@@ -17,13 +23,13 @@ import util.Database;
 public class NursePatientRecordsPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form NursePatientRecordsPanel
+     * Creates new form NursePatientRecordsPanels
      */
     public NursePatientRecordsPanel() {
         initComponents();
     }
 
-    private void loadTable() {
+        private void loadTable() {
     try {
         Connection conn = Database.getInstance().getConnection();
         String sql = "SELECT * FROM nurse_patient";
@@ -47,6 +53,7 @@ public class NursePatientRecordsPanel extends javax.swing.JPanel {
         e.printStackTrace();
     }
     }
+        
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -57,9 +64,8 @@ public class NursePatientRecordsPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        jPanel8 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        jPanel9 = new javax.swing.JPanel();
+        jLabel10 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
@@ -72,6 +78,7 @@ public class NursePatientRecordsPanel extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        printBtn = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -84,23 +91,23 @@ public class NursePatientRecordsPanel extends javax.swing.JPanel {
         jLabel8 = new javax.swing.JLabel();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Patient Management");
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel10.setText("Patient Management");
 
-        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
-        jPanel8.setLayout(jPanel8Layout);
-        jPanel8Layout.setHorizontalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        jPanel8Layout.setVerticalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(jLabel10)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -138,28 +145,38 @@ public class NursePatientRecordsPanel extends javax.swing.JPanel {
 
         jLabel7.setText("Medication Given");
 
+        printBtn.setBackground(new java.awt.Color(51, 153, 255));
+        printBtn.setForeground(new java.awt.Color(255, 255, 255));
+        printBtn.setText("Print");
+        printBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                printBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 507, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(20, 20, 20)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(printBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(11, Short.MAX_VALUE))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1)
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -172,7 +189,8 @@ public class NursePatientRecordsPanel extends javax.swing.JPanel {
                     .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5)
                     .addComponent(jLabel6)
-                    .addComponent(jLabel7))
+                    .addComponent(jLabel7)
+                    .addComponent(printBtn))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -268,185 +286,217 @@ public class NursePatientRecordsPanel extends javax.swing.JPanel {
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 744, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 534, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 744, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 534, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        int row = jTable1.getSelectedRow();
+        if (row != -1) {
+            jTextField1.setText(jTable1.getValueAt(row, 1).toString());
+            jTextField2.setText(jTable1.getValueAt(row, 2).toString());
+            jTextField3.setText(jTable1.getValueAt(row, 3).toString());
+            jTextField4.setText(jTable1.getValueAt(row, 4).toString());
+            jDateChooser1.setDate((java.util.Date) jTable1.getValueAt(row, 5));
+        }
+    }//GEN-LAST:event_jTable1MouseClicked
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-         String patientName = jTextField1.getText();
-    String age = jTextField2.getText();
-    String medication = jTextField3.getText();
-    String allergies = jTextField4.getText();
-    java.util.Date utilDate = jDateChooser1.getDate();
+        String patientName = jTextField1.getText();
+        String age = jTextField2.getText();
+        String medication = jTextField3.getText();
+        String allergies = jTextField4.getText();
+        java.util.Date utilDate = jDateChooser1.getDate();
 
-    if (patientName.isEmpty() || age.isEmpty() || medication.isEmpty() || allergies.isEmpty() || utilDate == null) {
-        JOptionPane.showMessageDialog(this, "Please fill all fields!");
-        return;
-    }
+        if (patientName.isEmpty() || age.isEmpty() || medication.isEmpty() || allergies.isEmpty() || utilDate == null) {
+            JOptionPane.showMessageDialog(this, "Please fill all fields!");
+            return;
+        }
 
-    java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+        java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
 
-    try {
-        Connection conn = Database.getInstance().getConnection();
-        String sql = "INSERT INTO nurse_patient(patient_name, age, medication_given, allergies, last_visit_date) VALUES(?,?,?,?,?)";
-        PreparedStatement pst = conn.prepareStatement(sql);
-        pst.setString(1, patientName);
-        pst.setInt(2, Integer.parseInt(age));
-        pst.setString(3, medication);
-        pst.setString(4, allergies);
-        pst.setDate(5, sqlDate);
+        try {
+            Connection conn = Database.getInstance().getConnection();
+            String sql = "INSERT INTO nurse_patient(patient_name, age, medication_given, allergies, last_visit_date) VALUES(?,?,?,?,?)";
+            PreparedStatement pst = conn.prepareStatement(sql);
+            pst.setString(1, patientName);
+            pst.setInt(2, Integer.parseInt(age));
+            pst.setString(3, medication);
+            pst.setString(4, allergies);
+            pst.setDate(5, sqlDate);
 
-        pst.executeUpdate();
-        JOptionPane.showMessageDialog(this, "Patient Added Successfully!");
-        loadTable(); // refresh table
-    } catch (Exception e) {
-        e.printStackTrace();
-        JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
-    }
+            pst.executeUpdate();
+            JOptionPane.showMessageDialog(this, "Patient Added Successfully!");
+            loadTable(); // refresh table
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         int row = jTable1.getSelectedRow();
-    if (row == -1) {
-        JOptionPane.showMessageDialog(this, "Select a patient to update!");
-        return;
-    }
+        if (row == -1) {
+            JOptionPane.showMessageDialog(this, "Select a patient to update!");
+            return;
+        }
 
-    int patientId = (int) jTable1.getValueAt(row, 0);
-    String patientName = jTextField1.getText();
-    String age = jTextField2.getText();
-    String medication = jTextField3.getText();
-    String allergies = jTextField4.getText();
-    java.util.Date utilDate = jDateChooser1.getDate();
+        int patientId = (int) jTable1.getValueAt(row, 0);
+        String patientName = jTextField1.getText();
+        String age = jTextField2.getText();
+        String medication = jTextField3.getText();
+        String allergies = jTextField4.getText();
+        java.util.Date utilDate = jDateChooser1.getDate();
 
-    if (patientName.isEmpty() || age.isEmpty() || medication.isEmpty() || allergies.isEmpty() || utilDate == null) {
-        JOptionPane.showMessageDialog(this, "Please fill all fields!");
-        return;
-    }
+        if (patientName.isEmpty() || age.isEmpty() || medication.isEmpty() || allergies.isEmpty() || utilDate == null) {
+            JOptionPane.showMessageDialog(this, "Please fill all fields!");
+            return;
+        }
 
-    java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+        java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
 
-    try {
-        Connection conn = Database.getInstance().getConnection();
-        String sql = "UPDATE nurse_patient SET patient_name=?, age=?, medication_given=?, allergies=?, last_visit_date=? WHERE patient_id=?";
-        PreparedStatement pst = conn.prepareStatement(sql);
-        pst.setString(1, patientName);
-        pst.setInt(2, Integer.parseInt(age));
-        pst.setString(3, medication);
-        pst.setString(4, allergies);
-        pst.setDate(5, sqlDate);
-        pst.setInt(6, patientId);
+        try {
+            Connection conn = Database.getInstance().getConnection();
+            String sql = "UPDATE nurse_patient SET patient_name=?, age=?, medication_given=?, allergies=?, last_visit_date=? WHERE patient_id=?";
+            PreparedStatement pst = conn.prepareStatement(sql);
+            pst.setString(1, patientName);
+            pst.setInt(2, Integer.parseInt(age));
+            pst.setString(3, medication);
+            pst.setString(4, allergies);
+            pst.setDate(5, sqlDate);
+            pst.setInt(6, patientId);
 
-        pst.executeUpdate();
-        JOptionPane.showMessageDialog(this, "Patient Updated Successfully!");
-        loadTable();
-    } catch (Exception e) {
-        e.printStackTrace();
-        JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
-    }
-    
+            pst.executeUpdate();
+            JOptionPane.showMessageDialog(this, "Patient Updated Successfully!");
+            loadTable();
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-       int row = jTable1.getSelectedRow();
-    if (row == -1) {
-        JOptionPane.showMessageDialog(this, "Select a patient to delete!");
-        return;
-    }
+        int row = jTable1.getSelectedRow();
+        if (row == -1) {
+            JOptionPane.showMessageDialog(this, "Select a patient to delete!");
+            return;
+        }
 
-    int patientId = (int) jTable1.getValueAt(row, 0);
+        int patientId = (int) jTable1.getValueAt(row, 0);
 
-    try {
-        Connection conn = Database.getInstance().getConnection();
-        String sql = "DELETE FROM nurse_patient WHERE patient_id=?";
-        PreparedStatement pst = conn.prepareStatement(sql);
-        pst.setInt(1, patientId);
-        pst.executeUpdate();
+        try {
+            Connection conn = Database.getInstance().getConnection();
+            String sql = "DELETE FROM nurse_patient WHERE patient_id=?";
+            PreparedStatement pst = conn.prepareStatement(sql);
+            pst.setInt(1, patientId);
+            pst.executeUpdate();
 
-        JOptionPane.showMessageDialog(this, "Patient Deleted Successfully!");
-        loadTable();
-    } catch (Exception e) {
-        e.printStackTrace();
-        JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
-    }
+            JOptionPane.showMessageDialog(this, "Patient Deleted Successfully!");
+            loadTable();
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        int row = jTable1.getSelectedRow();
-    if (row != -1) {
-        jTextField1.setText(jTable1.getValueAt(row, 1).toString());
-        jTextField2.setText(jTable1.getValueAt(row, 2).toString());
-        jTextField3.setText(jTable1.getValueAt(row, 3).toString());
-        jTextField4.setText(jTable1.getValueAt(row, 4).toString());
-        jDateChooser1.setDate((java.util.Date) jTable1.getValueAt(row, 5));
-    }
-    }//GEN-LAST:event_jTable1MouseClicked
+    private void printBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printBtnActionPerformed
+        int selectedRow = jTable1.getSelectedRow();
+
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(this, "Please select a patient record to print.");
+            return;
+        }
+
+        String patientName   = jTable1.getValueAt(selectedRow, 1).toString();
+        String age   = jTable1.getValueAt(selectedRow, 2).toString();
+        String medicationGiven   = jTable1.getValueAt(selectedRow, 3).toString();
+        String allergies    = jTable1.getValueAt(selectedRow, 4).toString();
+        String lastVisitDate   = jTable1.getValueAt(selectedRow, 5).toString();
+
+        StringBuilder report = new StringBuilder();
+        report.append("==================================================\n");
+        report.append("                 GlobeMed Hospital                \n");
+        report.append("            New Town, Anuradhapura                \n");
+        report.append("                 Patient Report          \n");
+        report.append("==================================================\n\n");
+        report.append("Patient Name     : ").append(patientName).append("\n");
+        report.append("Age              : ").append(age).append("\n");
+        report.append("Medication Given : ").append(medicationGiven).append("\n");
+        report.append("Allergies        : ").append(allergies).append("\n");
+        report.append("Last Visit Date  : ").append(lastVisitDate).append("\n");
+        report.append("--------------------------------------------------\n");
+        report.append("For assistance, please contact the billing        \n");
+        report.append("department at GlobeMed Hospital.                  \n");
+        report.append("--------------------------------------------------\n");
+        report.append("      Thank you for trusting GlobeMed!            \n");
+        report.append("==================================================\n");
+        report.append("Contact: (0252077777 / 0773480439)                \n");
+        report.append("==================================================\n");
+
+        PrinterJob job = PrinterJob.getPrinterJob();
+        job.setPrintable((graphics, pageFormat, pageIndex) -> {
+            if (pageIndex > 0) {
+                return Printable.NO_SUCH_PAGE;
+            }
+            Graphics2D g2d = (Graphics2D) graphics;
+            g2d.translate(pageFormat.getImageableX(), pageFormat.getImageableY());
+
+            graphics.setFont(new Font("Monospaced", Font.PLAIN, 12));
+
+            int y = 100;
+            for (String line : report.toString().split("\n")) {
+                graphics.drawString(line, 100, y);
+                y += 15;
+            }
+
+            return Printable.PAGE_EXISTS;
+        });
+
+        boolean doPrint = job.printDialog();
+        if (doPrint) {
+            try {
+                job.print();
+            } catch (PrinterException e) {
+                JOptionPane.showMessageDialog(this, "Printing Error: " + e.getMessage());
+            }
+        }
+    }//GEN-LAST:event_printBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -454,7 +504,7 @@ public class NursePatientRecordsPanel extends javax.swing.JPanel {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private com.toedter.calendar.JDateChooser jDateChooser1;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -464,10 +514,9 @@ public class NursePatientRecordsPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
@@ -477,5 +526,6 @@ public class NursePatientRecordsPanel extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
+    private javax.swing.JButton printBtn;
     // End of variables declaration//GEN-END:variables
 }
