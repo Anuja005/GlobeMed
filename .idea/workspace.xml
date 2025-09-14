@@ -4,41 +4,24 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1a632612-c32b-4c35-a261-bf85e30b0512" name="Changes" comment="Reports Visitor pattern setup for All Admin Patient Panel">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/dto/reports/PrintReportVisitor.class" beforeDir="false" />
+    <list default="true" id="1a632612-c32b-4c35-a261-bf85e30b0512" name="Changes" comment=" Visitor pattern used in Billings Reports">
+      <change beforePath="$PROJECT_DIR$/build/classes/dto/reports/AppointmentPrintVisitor.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/dto/reports/AppointmentPrintVisitor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/dto/reports/BillingPrintVisitor.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/dto/reports/BillingPrintVisitor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/dto/reports/PatientPrintVisitor.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/dto/reports/PatientPrintVisitor.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/dto/reports/ReportVisitor.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/dto/reports/ReportVisitor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/gui/AdminDashboardFrame$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/gui/AdminDashboardFrame$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/gui/AdminDashboardFrame$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/gui/AdminDashboardFrame$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/gui/AdminDashboardFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/gui/AdminDashboardFrame.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/gui/AdminDashboardFrame.form" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/gui/AdminDashboardFrame.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/panel/Admin_PatientManagementPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/Admin_PatientManagementPanel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/panel/AppointmentManagement$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/AppointmentManagement$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/panel/AppointmentManagement$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/AppointmentManagement$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/panel/AppointmentManagement$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/AppointmentManagement$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/panel/AppointmentManagement$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/AppointmentManagement$4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/panel/AppointmentManagement$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/AppointmentManagement$5.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/panel/AppointmentManagement$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/AppointmentManagement$6.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/panel/AppointmentManagement$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/AppointmentManagement$7.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/panel/AppointmentManagement$8.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/AppointmentManagement$8.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/panel/AppointmentManagement$9.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/AppointmentManagement$9.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/panel/AppointmentManagement.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/AppointmentManagement.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/panel/Billing$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/Billing$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/panel/Billing$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/Billing$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/panel/Billing$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/Billing$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/panel/Billing$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/Billing$4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/panel/Billing$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/Billing$5.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/panel/Billing$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/Billing$6.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/panel/Billing$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/Billing$7.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/panel/Billing.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/Billing.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nbproject/private/private.xml" beforeDir="false" afterPath="$PROJECT_DIR$/nbproject/private/private.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dto/reports/PrintReportVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dto/reports/PatientPrintVisitor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/panel/Roles$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/Roles$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/panel/Roles$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/Roles$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/panel/Roles$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/Roles$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/panel/Roles$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/Roles$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/panel/Roles$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/Roles$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/panel/Roles$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/Roles$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/panel/Roles$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/Roles$7.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/panel/Roles.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/Roles.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dto/reports/AppointmentPrintVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dto/reports/AppointmentPrintVisitor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dto/reports/BillingPrintVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dto/reports/BillingPrintVisitor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dto/reports/PatientPrintVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dto/reports/PatientPrintVisitor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dto/reports/ReportVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dto/reports/ReportVisitor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/AdminDashboardFrame.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/AdminDashboardFrame.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/AdminDashboardFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/AdminDashboardFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/panel/Admin_PatientManagementPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/panel/Admin_PatientManagementPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/panel/AppointmentManagement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/panel/AppointmentManagement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/panel/Billing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/panel/Billing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/panel/Roles.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/panel/Roles.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -348,7 +331,31 @@
       <option name="project" value="LOCAL" />
       <updated>1757760970050</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary=" Visitor pattern used in Patient Reports">
+      <option name="closed" value="true" />
+      <created>1757841294689</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1757841294689</updated>
+    </task>
+    <task id="LOCAL-00031" summary=" Visitor pattern used in Appointments Reports">
+      <option name="closed" value="true" />
+      <created>1757841327183</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1757841327183</updated>
+    </task>
+    <task id="LOCAL-00032" summary=" Visitor pattern used in Billings Reports">
+      <option name="closed" value="true" />
+      <created>1757841350874</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1757841350874</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -376,6 +383,9 @@
     <MESSAGE value="All Reports setup for Admin part" />
     <MESSAGE value="Reports Titles setup for All Dashboards" />
     <MESSAGE value="Reports Visitor pattern setup for All Admin Patient Panel" />
-    <option name="LAST_COMMIT_MESSAGE" value="Reports Visitor pattern setup for All Admin Patient Panel" />
+    <MESSAGE value=" Visitor pattern used in Patient Reports" />
+    <MESSAGE value=" Visitor pattern used in Appointments Reports" />
+    <MESSAGE value=" Visitor pattern used in Billings Reports" />
+    <option name="LAST_COMMIT_MESSAGE" value=" Visitor pattern used in Billings Reports" />
   </component>
 </project>
