@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1a632612-c32b-4c35-a261-bf85e30b0512" name="Changes" comment=" Visitor pattern used in Staff Roles Reports" />
+    <list default="true" id="1a632612-c32b-4c35-a261-bf85e30b0512" name="Changes" comment=" Visitor pattern used in Stock Reports" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -345,14 +345,21 @@
       <option name="project" value="LOCAL" />
       <updated>1757841760799</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary=" Visitor pattern used in Stock Reports">
+      <option name="closed" value="true" />
+      <created>1757843206775</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1757843206775</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Nurse Dashboard UI" />
     <MESSAGE value="Patient Dashboard UI" />
     <MESSAGE value="Admin Patient all done" />
     <MESSAGE value="Admin Patient all done, unvers" />
@@ -377,6 +384,7 @@
     <MESSAGE value=" Visitor pattern used in Appointments Reports" />
     <MESSAGE value=" Visitor pattern used in Billings Reports" />
     <MESSAGE value=" Visitor pattern used in Staff Roles Reports" />
-    <option name="LAST_COMMIT_MESSAGE" value=" Visitor pattern used in Staff Roles Reports" />
+    <MESSAGE value=" Visitor pattern used in Stock Reports" />
+    <option name="LAST_COMMIT_MESSAGE" value=" Visitor pattern used in Stock Reports" />
   </component>
 </project>

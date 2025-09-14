@@ -14,4 +14,5 @@ public interface ReportVisitor {
     void visit(AppointmentReport report);
     void visit(StaffReport report);
     void visit(StockReport report);
+    void visit(DoctorPatientReport report);
 }
