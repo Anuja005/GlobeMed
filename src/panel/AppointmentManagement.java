@@ -7,11 +7,8 @@
 package panel;
 
 import dto.AppointmentMediator;
-import java.awt.Font;
-import java.awt.Graphics2D;
-import java.awt.print.Printable;
-import java.awt.print.PrinterException;
-import java.awt.print.PrinterJob;
+import dto.reports.AppointmentPrintVisitor;
+import dto.reports.AppointmentReport;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -568,66 +565,23 @@ if (date == null) {
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void printBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printBtnActionPerformed
-        int selectedRow = jTable1.getSelectedRow();
+      int selectedRow = jTable1.getSelectedRow();
 
-        if (selectedRow == -1) {
-            JOptionPane.showMessageDialog(this, "Please select a patient record to print.");
-            return;
-        }
+    if (selectedRow == -1) {
+        JOptionPane.showMessageDialog(this, "Please select an appointment record to print.");
+        return;
+    }
 
-        String patientName   = jTable1.getValueAt(selectedRow, 1).toString();
-        String doctorName    = jTable1.getValueAt(selectedRow, 2).toString();
-        String appointmentDate   = jTable1.getValueAt(selectedRow, 3).toString();
-        String appointmentTime    = jTable1.getValueAt(selectedRow, 4).toString();
-        String status = jTable1.getValueAt(selectedRow, 5).toString();
+    String patientName     = jTable1.getValueAt(selectedRow, 1).toString();
+    String doctorName      = jTable1.getValueAt(selectedRow, 2).toString();
+    String appointmentDate = jTable1.getValueAt(selectedRow, 3).toString();
+    String appointmentTime = jTable1.getValueAt(selectedRow, 4).toString();
+    String status          = jTable1.getValueAt(selectedRow, 5).toString();
 
-        StringBuilder report = new StringBuilder();
-        report.append("==================================================\n");
-        report.append("                 GlobeMed Hospital                \n");
-        report.append("            New Town, Anuradhapura                \n");
-        report.append("          Patient Appointment Report          \n");
-        report.append("==================================================\n\n");
-        report.append("Patient Name       : ").append(patientName).append("\n");
-        report.append("Doctor Name        : ").append(doctorName).append("\n");
-        report.append("Appointment Date   : ").append(appointmentDate).append("\n");
-        report.append("Appointment Time   : ").append(appointmentTime).append("\n");
-        report.append("Status             : ").append(status).append("\n\n");
-        report.append("--------------------------------------------------\n");
-        report.append("For assistance, please contact the billing        \n");
-        report.append("department at GlobeMed Hospital.                  \n");
-        report.append("--------------------------------------------------\n");
-        report.append("      Thank you for trusting GlobeMed!            \n");
-        report.append("==================================================\n");
-        report.append("Contact: (0252077777 / 0773480439)                \n");
-        report.append("==================================================\n");
+    AppointmentReport report = new AppointmentReport(patientName, doctorName, appointmentDate, appointmentTime, status);
 
-        PrinterJob job = PrinterJob.getPrinterJob();
-        job.setPrintable((graphics, pageFormat, pageIndex) -> {
-            if (pageIndex > 0) {
-                return Printable.NO_SUCH_PAGE;
-            }
-            Graphics2D g2d = (Graphics2D) graphics;
-            g2d.translate(pageFormat.getImageableX(), pageFormat.getImageableY());
-
-            graphics.setFont(new Font("Monospaced", Font.PLAIN, 12));
-
-            int y = 100;
-            for (String line : report.toString().split("\n")) {
-                graphics.drawString(line, 100, y);
-                y += 15;
-            }
-
-            return Printable.PAGE_EXISTS;
-        });
-
-        boolean doPrint = job.printDialog();
-        if (doPrint) {
-            try {
-                job.print();
-            } catch (PrinterException e) {
-                JOptionPane.showMessageDialog(this, "Printing Error: " + e.getMessage());
-            }
-        }
+    AppointmentPrintVisitor visitor = new AppointmentPrintVisitor();
+    report.accept(visitor);
     }//GEN-LAST:event_printBtnActionPerformed
 
 
