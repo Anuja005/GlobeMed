@@ -4,25 +4,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1a632612-c32b-4c35-a261-bf85e30b0512" name="Changes" comment=" Visitor pattern used in Billings Reports">
-      <change beforePath="$PROJECT_DIR$/build/classes/dto/reports/AppointmentPrintVisitor.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/dto/reports/AppointmentPrintVisitor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/dto/reports/BillingPrintVisitor.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/dto/reports/BillingPrintVisitor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/dto/reports/PatientPrintVisitor.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/dto/reports/PatientPrintVisitor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/dto/reports/ReportVisitor.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/dto/reports/ReportVisitor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/panel/Roles$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/Roles$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/panel/Roles$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/Roles$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/panel/Roles$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/Roles$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/panel/Roles$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/Roles$4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/panel/Roles$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/Roles$5.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/panel/Roles$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/Roles$6.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/panel/Roles$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/Roles$7.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/panel/Roles.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/Roles.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dto/reports/AppointmentPrintVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dto/reports/AppointmentPrintVisitor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dto/reports/BillingPrintVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dto/reports/BillingPrintVisitor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dto/reports/PatientPrintVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dto/reports/PatientPrintVisitor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dto/reports/ReportVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dto/reports/ReportVisitor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/panel/Roles.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/panel/Roles.java" afterDir="false" />
-    </list>
+    <list default="true" id="1a632612-c32b-4c35-a261-bf85e30b0512" name="Changes" comment=" Visitor pattern used in Staff Roles Reports" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -355,7 +337,15 @@
       <option name="project" value="LOCAL" />
       <updated>1757841350874</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary=" Visitor pattern used in Staff Roles Reports">
+      <option name="closed" value="true" />
+      <created>1757841760799</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1757841760799</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -386,6 +376,7 @@
     <MESSAGE value=" Visitor pattern used in Patient Reports" />
     <MESSAGE value=" Visitor pattern used in Appointments Reports" />
     <MESSAGE value=" Visitor pattern used in Billings Reports" />
-    <option name="LAST_COMMIT_MESSAGE" value=" Visitor pattern used in Billings Reports" />
+    <MESSAGE value=" Visitor pattern used in Staff Roles Reports" />
+    <option name="LAST_COMMIT_MESSAGE" value=" Visitor pattern used in Staff Roles Reports" />
   </component>
 </project>

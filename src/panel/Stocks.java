@@ -4,11 +4,8 @@
  */
 package panel;
 
-import java.awt.Font;
-import java.awt.Graphics2D;
-import java.awt.print.Printable;
-import java.awt.print.PrinterException;
-import java.awt.print.PrinterJob;
+import dto.reports.StockPrintVisitor;
+import dto.reports.StockReport;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -518,64 +515,22 @@ public class Stocks extends javax.swing.JPanel {
     private void printBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printBtnActionPerformed
         int selectedRow = jTable1.getSelectedRow();
 
-        if (selectedRow == -1) {
-            JOptionPane.showMessageDialog(this, "Please select a patient record to print.");
-            return;
-        }
+    if (selectedRow == -1) {
+        JOptionPane.showMessageDialog(this, "Please select a stock record to print.");
+        return;
+    }
 
-        String medicineName   = jTable1.getValueAt(selectedRow, 1).toString();
-        String quantity    = jTable1.getValueAt(selectedRow, 2).toString();
-        String pricePerUnit   = jTable1.getValueAt(selectedRow, 3).toString();
-        String expiryDate    = jTable1.getValueAt(selectedRow, 4).toString();
-        String status = jTable1.getValueAt(selectedRow, 5).toString();
+    String medicineName = jTable1.getValueAt(selectedRow, 1).toString();
+    String quantity     = jTable1.getValueAt(selectedRow, 2).toString();
+    String pricePerUnit = jTable1.getValueAt(selectedRow, 3).toString();
+    String expiryDate   = jTable1.getValueAt(selectedRow, 4).toString();
+    String status       = jTable1.getValueAt(selectedRow, 5).toString();
 
-        StringBuilder report = new StringBuilder();
-        report.append("==================================================\n");
-        report.append("                 GlobeMed Hospital                \n");
-        report.append("            New Town, Anuradhapura                \n");
-        report.append("                 Stock Report          \n");
-        report.append("==================================================\n\n");
-        report.append("Medicine Name   : ").append(medicineName).append("\n");
-        report.append("Quantity        : ").append(quantity).append("\n");
-        report.append("Price per Unit  : Rs ").append(pricePerUnit).append("\n");
-        report.append("Expiry Date     : ").append(expiryDate).append("\n");
-        report.append("Status          : ").append(status).append("\n\n");
-        report.append("--------------------------------------------------\n");
-        report.append("For assistance, please contact the billing        \n");
-        report.append("department at GlobeMed Hospital.                  \n");
-        report.append("--------------------------------------------------\n");
-        report.append("      Thank you for trusting GlobeMed!            \n");
-        report.append("==================================================\n");
-        report.append("Contact: (0252077777 / 0773480439)                \n");
-        report.append("==================================================\n");
+    StockReport report = new StockReport(medicineName, quantity, pricePerUnit, expiryDate, status);
 
-        PrinterJob job = PrinterJob.getPrinterJob();
-        job.setPrintable((graphics, pageFormat, pageIndex) -> {
-            if (pageIndex > 0) {
-                return Printable.NO_SUCH_PAGE;
-            }
-            Graphics2D g2d = (Graphics2D) graphics;
-            g2d.translate(pageFormat.getImageableX(), pageFormat.getImageableY());
+    StockPrintVisitor visitor = new StockPrintVisitor();
+    report.accept(visitor);
 
-            graphics.setFont(new Font("Monospaced", Font.PLAIN, 12));
-
-            int y = 100;
-            for (String line : report.toString().split("\n")) {
-                graphics.drawString(line, 100, y);
-                y += 15;
-            }
-
-            return Printable.PAGE_EXISTS;
-        });
-
-        boolean doPrint = job.printDialog();
-        if (doPrint) {
-            try {
-                job.print();
-            } catch (PrinterException e) {
-                JOptionPane.showMessageDialog(this, "Printing Error: " + e.getMessage());
-            }
-        }
     }//GEN-LAST:event_printBtnActionPerformed
 
 
