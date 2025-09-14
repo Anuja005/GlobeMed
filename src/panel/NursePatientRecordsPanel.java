@@ -4,11 +4,8 @@
  */
 package panel;
 
-import java.awt.Font;
-import java.awt.Graphics2D;
-import java.awt.print.Printable;
-import java.awt.print.PrinterException;
-import java.awt.print.PrinterJob;
+import dto.reports.NursePatientPrintVisitor;
+import dto.reports.NursePatientReport;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -27,6 +24,7 @@ public class NursePatientRecordsPanel extends javax.swing.JPanel {
      */
     public NursePatientRecordsPanel() {
         initComponents();
+        loadTable();
     }
 
         private void loadTable() {
@@ -115,10 +113,7 @@ public class NursePatientRecordsPanel extends javax.swing.JPanel {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
                 "ID", "Name", "Age", "Medication Given", "Allergies", "Last Visit Date"
@@ -436,66 +431,23 @@ public class NursePatientRecordsPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void printBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printBtnActionPerformed
-        int selectedRow = jTable1.getSelectedRow();
+    int selectedRow = jTable1.getSelectedRow();
 
-        if (selectedRow == -1) {
-            JOptionPane.showMessageDialog(this, "Please select a patient record to print.");
-            return;
-        }
+    if (selectedRow == -1) {
+        JOptionPane.showMessageDialog(this, "Please select a nurse–patient record to print.");
+        return;
+    }
 
-        String patientName   = jTable1.getValueAt(selectedRow, 1).toString();
-        String age   = jTable1.getValueAt(selectedRow, 2).toString();
-        String medicationGiven   = jTable1.getValueAt(selectedRow, 3).toString();
-        String allergies    = jTable1.getValueAt(selectedRow, 4).toString();
-        String lastVisitDate   = jTable1.getValueAt(selectedRow, 5).toString();
+    String patientName     = jTable1.getValueAt(selectedRow, 1).toString();
+    String age             = jTable1.getValueAt(selectedRow, 2).toString();
+    String medicationGiven = jTable1.getValueAt(selectedRow, 3).toString();
+    String allergies       = jTable1.getValueAt(selectedRow, 4).toString();
+    String lastVisitDate   = jTable1.getValueAt(selectedRow, 5).toString();
 
-        StringBuilder report = new StringBuilder();
-        report.append("==================================================\n");
-        report.append("                 GlobeMed Hospital                \n");
-        report.append("            New Town, Anuradhapura                \n");
-        report.append("                 Patient Report          \n");
-        report.append("==================================================\n\n");
-        report.append("Patient Name     : ").append(patientName).append("\n");
-        report.append("Age              : ").append(age).append("\n");
-        report.append("Medication Given : ").append(medicationGiven).append("\n");
-        report.append("Allergies        : ").append(allergies).append("\n");
-        report.append("Last Visit Date  : ").append(lastVisitDate).append("\n");
-        report.append("--------------------------------------------------\n");
-        report.append("For assistance, please contact the billing        \n");
-        report.append("department at GlobeMed Hospital.                  \n");
-        report.append("--------------------------------------------------\n");
-        report.append("      Thank you for trusting GlobeMed!            \n");
-        report.append("==================================================\n");
-        report.append("Contact: (0252077777 / 0773480439)                \n");
-        report.append("==================================================\n");
+    NursePatientReport report = new NursePatientReport(patientName, age, medicationGiven, allergies, lastVisitDate);
 
-        PrinterJob job = PrinterJob.getPrinterJob();
-        job.setPrintable((graphics, pageFormat, pageIndex) -> {
-            if (pageIndex > 0) {
-                return Printable.NO_SUCH_PAGE;
-            }
-            Graphics2D g2d = (Graphics2D) graphics;
-            g2d.translate(pageFormat.getImageableX(), pageFormat.getImageableY());
-
-            graphics.setFont(new Font("Monospaced", Font.PLAIN, 12));
-
-            int y = 100;
-            for (String line : report.toString().split("\n")) {
-                graphics.drawString(line, 100, y);
-                y += 15;
-            }
-
-            return Printable.PAGE_EXISTS;
-        });
-
-        boolean doPrint = job.printDialog();
-        if (doPrint) {
-            try {
-                job.print();
-            } catch (PrinterException e) {
-                JOptionPane.showMessageDialog(this, "Printing Error: " + e.getMessage());
-            }
-        }
+    NursePatientPrintVisitor visitor = new NursePatientPrintVisitor();
+    report.accept(visitor);
     }//GEN-LAST:event_printBtnActionPerformed
 
 
