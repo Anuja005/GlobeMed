@@ -7,25 +7,26 @@ package dto.reports;
 import java.awt.*;
 import java.awt.print.*;
 import javax.swing.*;
+
 /**
  *
  * @author ANUJA
  */
-public class NursePatientPrintVisitor implements ReportVisitor {
+public class CurrentPatientBillPrintVisitor implements ReportVisitor {
 
     @Override
-    public void visit(NursePatientReport report) {
+    public void visit(CurrentPatientBillReport report) {
         StringBuilder sb = new StringBuilder();
         sb.append("==================================================\n");
         sb.append("                 GlobeMed Hospital                \n");
         sb.append("            New Town, Anuradhapura                \n");
-        sb.append("              Nurse–Patient Report                \n");
+        sb.append("        Current Patient Billing Report            \n");
         sb.append("==================================================\n\n");
-        sb.append("Patient Name     : ").append(report.getPatientName()).append("\n");
-        sb.append("Age              : ").append(report.getAge()).append("\n");
-        sb.append("Medication Given : ").append(report.getMedicationGiven()).append("\n");
-        sb.append("Allergies        : ").append(report.getAllergies()).append("\n");
-        sb.append("Last Visit Date  : ").append(report.getLastVisitDate()).append("\n\n");
+        sb.append("Patient Name   : ").append(report.getPatientName()).append("\n");
+        sb.append("Doctor Name    : ").append(report.getDoctorName()).append("\n");
+        sb.append("Total Amount   : Rs. ").append(report.getTotalAmount()).append("\n");
+        sb.append("Date Issued    : ").append(report.getDateIssued()).append("\n");
+        sb.append("Payment Status : ").append(report.getPaymentStatus()).append("\n\n");
         sb.append("--------------------------------------------------\n");
         sb.append("For assistance, please contact the billing        \n");
         sb.append("department at GlobeMed Hospital.                  \n");
@@ -44,6 +45,7 @@ public class NursePatientPrintVisitor implements ReportVisitor {
     @Override public void visit(StaffReport report) {}
     @Override public void visit(StockReport report) {}
     @Override public void visit(DoctorPatientReport report) {}
+    @Override public void visit(NursePatientReport report) {}
 
     private void print(String text) {
         PrinterJob job = PrinterJob.getPrinterJob();
@@ -69,9 +71,5 @@ public class NursePatientPrintVisitor implements ReportVisitor {
             }
         }
     }
-
-    @Override
-    public void visit(CurrentPatientBillReport report) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 }
+
