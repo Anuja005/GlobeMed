@@ -6,8 +6,8 @@ package panel;
 
 import dto.Patient;
 import dto.PatientHistory;
+import dto.reports.PatientPrintVisitor;
 import dto.reports.PatientReport;
-import dto.reports.PrintReportVisitor;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -664,7 +664,7 @@ private void searchPatients() {
 
     //Visitor used
     PatientReport report = new PatientReport(patientName, mobile, address);
-    PrintReportVisitor visitor = new PrintReportVisitor();
+    PatientPrintVisitor visitor = new PatientPrintVisitor();
     report.accept(visitor);
 
     }//GEN-LAST:event_printBtnActionPerformed

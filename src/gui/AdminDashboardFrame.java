@@ -57,7 +57,6 @@ public class AdminDashboardFrame extends javax.swing.JFrame {
         logoutBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1036, 610));
 
         jTabbedPane1.setTabPlacement(javax.swing.JTabbedPane.LEFT);
 

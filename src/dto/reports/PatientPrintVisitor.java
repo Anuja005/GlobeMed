@@ -11,7 +11,7 @@ import javax.swing.*;
  *
  * @author ANUJA
  */
-public class PrintReportVisitor implements ReportVisitor {
+public class PatientPrintVisitor implements ReportVisitor {
 
     @Override
     public void visit(PatientReport report) {
@@ -35,21 +35,6 @@ public class PrintReportVisitor implements ReportVisitor {
 
         printText(sb.toString());
     }
-
-//    @Override
-//    public void visit(BillingReport report) {
-//        // Similar implementation for Billing Reports
-//    }
-//
-//    @Override
-//    public void visit(AppointmentReport report) {
-//        // Similar implementation for Appointments
-//    }
-//
-//    @Override
-//    public void visit(StaffReport report) {
-//        // Similar implementation for Staff
-//    }
 
     private void printText(String text) {
         PrinterJob job = PrinterJob.getPrinterJob();
@@ -76,5 +61,15 @@ public class PrintReportVisitor implements ReportVisitor {
                 JOptionPane.showMessageDialog(null, "Printing Error: " + e.getMessage());
             }
         }
+    }
+
+    @Override
+    public void visit(BillingReport report) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void visit(AppointmentReport report) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }
