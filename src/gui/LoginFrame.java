@@ -4,6 +4,18 @@
  */
 package gui;
 
+import Auth.AccessControl;
+import Auth.AdminAccess;
+import Auth.AdminNotifierObserver;
+import Auth.BasicAccess;
+import Auth.BillingOfficerAccess;
+import Auth.DoctorAccess;
+import Auth.LoggerObserver;
+import Auth.NurseAccess;
+import Auth.PatientAccess;
+import Auth.PharmacistAccess;
+import Auth.SecureDashboardProxy;
+import Auth.SecurityEventManager;
 import com.formdev.flatlaf.themes.FlatMacDarkLaf;
 import com.formdev.flatlaf.themes.FlatMacLightLaf;
 import dto.Auth;
@@ -332,72 +344,56 @@ public class LoginFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_PatientRadioBtnActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String username = jTextField1.getText();
-        String password = jTextField2.getText();
-        UserType userType;
-        if (AdminRadioBtn.isSelected()) {
-            userType = UserType.Admin;
-        } else if (DoctorRadioBtn.isSelected()) {
-            userType = UserType.Doctor;
-        } else if (NurseRadioBtn.isSelected()) {
-            userType = UserType.Nurse;
-        } else if (PharmacistRadioBtn.isSelected()) {
-            userType = UserType.Pharmacist;
-        } else if (BillingOfficerRadioBtn.isSelected()) {
-            userType = UserType.BillingOfficer;
-        } else {
-            userType = UserType.Patient;
-        }
+    String username = jTextField1.getText();
+    String password = jTextField2.getText();
+ 
+    UserType userType;
+    if (AdminRadioBtn.isSelected()) userType = UserType.Admin;
+    else if (DoctorRadioBtn.isSelected()) userType = UserType.Doctor;
+    else if (NurseRadioBtn.isSelected()) userType = UserType.Nurse;
+    else if (PharmacistRadioBtn.isSelected()) userType = UserType.Pharmacist;
+    else if (BillingOfficerRadioBtn.isSelected()) userType = UserType.BillingOfficer;
+    else userType = UserType.Patient;
 
-        auth = new Auth(username, password, userType);
+    auth = new Auth(username, password, userType);
 
-        try {
+    try {
         if (auth.isAuthenticated()) {
-    System.out.println("Successfully login");
+            // Observer 
+            SecurityEventManager eventManager = new SecurityEventManager();
+            eventManager.addObserver(new LoggerObserver());
+            eventManager.addObserver(new AdminNotifierObserver());
+            eventManager.notify("User " + username + " logged in as " + userType);
 
-   switch (auth.getAuthType()) {
-                case Admin -> {
-                    this.dispose();
-                    new AdminDashboardFrame(username, auth.getAuthType()).setVisible(true);
+            // Decorator use to Access control
+            AccessControl access = new BasicAccess(username);
+            switch (userType) {
+                case Admin -> access = new AdminAccess(access);
+                case Doctor -> access = new DoctorAccess(access);
+                case Nurse -> access = new NurseAccess(access);
+                case Pharmacist -> access = new PharmacistAccess(access);
+                case BillingOfficer -> access = new BillingOfficerAccess(access);
+                case Patient -> access = new PatientAccess(access);
+            }
+            access.accessDashboard();
+
+            // Proxy 
+            this.dispose();
+            SecureDashboardProxy proxy = new SecureDashboardProxy(userType);
+            proxy.openDashboard(username);
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Invalid Username or Password", "Ooops!", JOptionPane.ERROR_MESSAGE);
         }
-                case Doctor -> {
-                    this.dispose();
-                    new DoctorDashboardFrame(username, auth.getAuthType()).setVisible(true);
-                }
-                case Nurse -> {
-                    this.dispose();
-                    new NurseDashboardFrame(username, auth.getAuthType()).setVisible(true);
-                }
-                case Pharmacist -> {
-                    this.dispose();
-                    new PharmacistDashboardFrame(username, auth.getAuthType()).setVisible(true);
-                }
-                case BillingOfficer -> {
-                    this.dispose();
-                    new BillingOfficerDashboardFrame(username, auth.getAuthType()).setVisible(true);
-                }
-                case Patient -> {
-                    this.dispose();
-                    new PatientDashboardFrame(username, auth.getAuthType()).setVisible(true);
-                }
-        default -> JOptionPane.showMessageDialog(this, "Unknown User Type!");
+    } catch (Exception ex) {
+        JOptionPane.showMessageDialog(this, ex.getMessage(), "Ooops!", JOptionPane.ERROR_MESSAGE);
     }
-
-} else {
-    JOptionPane.showMessageDialog(this, "Invalid Username or Password", "Ooops!", JOptionPane.ERROR_MESSAGE);
-}
-
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage(), "Ooops!", JOptionPane.ERROR_MESSAGE);
-        }
-
-        System.out.println(username + ":" + password + ":" + userType.name());
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void themeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_themeBtnActionPerformed
         try {
-        // Switch the theme
+   
         if (isDark) {
             FlatMacLightLaf.setup();
         } else {
@@ -405,7 +401,7 @@ public class LoginFrame extends javax.swing.JFrame {
         }
         isDark = !isDark;
 
-        // Refresh all open windows and components
+   
         for (Window window : Window.getWindows()) {
             SwingUtilities.updateComponentTreeUI(window);
             window.invalidate();

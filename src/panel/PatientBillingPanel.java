@@ -35,7 +35,7 @@ public class PatientBillingPanel extends javax.swing.JPanel {
         ResultSet rs = pst.executeQuery();
 
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        model.setRowCount(0); // clear previous rows
+        model.setRowCount(0);  
 
         while (rs.next()) {
             Object[] row = {

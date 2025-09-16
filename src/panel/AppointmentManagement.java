@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 
-////Search still not finished
 package panel;
 
 import dto.AppointmentMediator;
@@ -460,23 +459,21 @@ if (date == null) {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
                                           
-    int row = jTable1.getSelectedRow(); // get selected row index
+    int row = jTable1.getSelectedRow();  
 
     if (row < 0) {
         JOptionPane.showMessageDialog(this, "Please select a row to update.");
-        return; // exit method if no row is selected
+        return;  
     }
 
-    int appointmentId = (int) jTable1.getValueAt(row, 0); // get ID from selected row
-
-    // Get updated values from fields
+    int appointmentId = (int) jTable1.getValueAt(row, 0);  
+ 
     String patientName = jTextField2.getText().trim();
     String doctorName = jTextField3.getText().trim();
     Date appointmentDate = jDateChooser1.getDate();
     Date appointmentTime = (Date) jSpinner1.getValue();
     String status = jComboBox1.getSelectedItem().toString();
-
-    // Validate fields
+ 
     if (patientName.isEmpty() || doctorName.isEmpty() || appointmentDate == null || appointmentTime == null) {
         JOptionPane.showMessageDialog(this, "Please fill all fields!");
         return;
@@ -500,7 +497,7 @@ if (date == null) {
         int rows = pst.executeUpdate();
         if (rows > 0) {
             JOptionPane.showMessageDialog(this, "Appointment Updated Successfully!");
-            loadAppointments(); // refresh table
+            loadAppointments();  
         }
 
         pst.close();
@@ -530,7 +527,7 @@ if (date == null) {
         int rows = pst.executeUpdate();
         if (rows > 0) {
             JOptionPane.showMessageDialog(this, "Appointment Deleted Successfully!");
-            loadAppointments(); // refresh table
+            loadAppointments();  
         }
 
         pst.close();
@@ -543,8 +540,8 @@ if (date == null) {
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
     public void mouseClicked(java.awt.event.MouseEvent evt) {
         int row = jTable1.getSelectedRow();
-        if (row >= 0) { // check if a row is selected
-            // Fill fields with selected row data
+        if (row >= 0) {  
+            
             jTextField2.setText(jTable1.getValueAt(row, 1).toString()); 
             jTextField3.setText(jTable1.getValueAt(row, 2).toString()); 
             jDateChooser1.setDate((Date) jTable1.getValueAt(row, 3));   

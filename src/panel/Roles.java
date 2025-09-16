@@ -36,7 +36,7 @@ public class Roles extends javax.swing.JPanel {
         ResultSet rs = pst.executeQuery();
 
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        model.setRowCount(0); // clear table
+        model.setRowCount(0);  
 
         while (rs.next()) {
             Object[] row = {
@@ -400,7 +400,7 @@ public class Roles extends javax.swing.JPanel {
         int rows = pst.executeUpdate();
         if (rows > 0) {
             JOptionPane.showMessageDialog(this, "Staff user updated successfully!");
-            loadStaffUsers(); // refresh table
+            loadStaffUsers();  
         }
 
         pst.close();
@@ -430,7 +430,7 @@ public class Roles extends javax.swing.JPanel {
         int rows = pst.executeUpdate();
         if (rows > 0) {
             JOptionPane.showMessageDialog(this, "Staff user deleted successfully!");
-            loadStaffUsers(); // refresh table
+            loadStaffUsers();  
         }
 
         pst.close();
@@ -444,12 +444,12 @@ public class Roles extends javax.swing.JPanel {
     public void mouseClicked(java.awt.event.MouseEvent evt) {
         int row = jTable1.getSelectedRow();
         if (row >= 0) {
-            jTextField1.setText(jTable1.getValueAt(row, 1).toString()); // Name
-            jComboBox1.setSelectedItem(jTable1.getValueAt(row, 2).toString()); // Role
-            jTextField8.setText(jTable1.getValueAt(row, 3).toString()); // Mobile
-            jTextField9.setText(jTable1.getValueAt(row, 4).toString()); // Address
-            jTextField3.setText(jTable1.getValueAt(row, 5).toString()); // Username
-            jTextField4.setText(jTable1.getValueAt(row, 6).toString()); // Password
+            jTextField1.setText(jTable1.getValueAt(row, 1).toString());  
+            jComboBox1.setSelectedItem(jTable1.getValueAt(row, 2).toString());  
+            jTextField8.setText(jTable1.getValueAt(row, 3).toString());  
+            jTextField9.setText(jTable1.getValueAt(row, 4).toString());  
+            jTextField3.setText(jTable1.getValueAt(row, 5).toString());  
+            jTextField4.setText(jTable1.getValueAt(row, 6).toString()); 
         }
     }
 });

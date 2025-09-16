@@ -103,23 +103,22 @@ private void searchPatients() {
     try {
         Connection conn = Database.getInstance().getConnection();
 
-        // Dynamic SQL with LIKE for live search
         String sql = "SELECT * FROM admin_patient WHERE "
                    + "CAST(patient_id AS CHAR) LIKE ? AND "
                    + "patient_name LIKE ? AND "
                    + "mobile LIKE ?";
 
         PreparedStatement pst = conn.prepareStatement(sql);
-        pst.setString(1, "%" + id + "%");      // matches partial ID
-        pst.setString(2, "%" + name + "%");    // matches partial name
-        pst.setString(3, "%" + mobile + "%");  // matches partial mobile
+        pst.setString(1, "%" + id + "%");       
+        pst.setString(2, "%" + name + "%");    
+        pst.setString(3, "%" + mobile + "%");   
 
         ResultSet rs = pst.executeQuery();
 
         DefaultTableModel model = new DefaultTableModel(new String[]{"ID", "Name", "Mobile", "Address"}, 0) {
             @Override
             public boolean isCellEditable(int row, int column) {
-                return false; // make table non-editable
+                return false;  
             }
         };
 
@@ -421,7 +420,7 @@ private void searchPatients() {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-         String name = jTextField2.getText().trim();
+    String name = jTextField2.getText().trim();
     String mobile = jTextField3.getText().trim();
     String address = jTextField4.getText().trim();
 
@@ -508,7 +507,6 @@ private void searchPatients() {
     try {
         Connection conn = Database.getInstance().getConnection();
 
-        // ✅ Fetch OLD state before updating
         String checkSql = "SELECT patient_name, mobile, address FROM admin_patient WHERE patient_id=?";
         PreparedStatement checkPst = conn.prepareStatement(checkSql);
         checkPst.setInt(1, id);
@@ -523,11 +521,9 @@ private void searchPatients() {
         String oldMobile = rs.getString("mobile");
         String oldAddress = rs.getString("address");
 
-        // ✅ Save OLD state into history (for undo)
         Patient oldPatient = new Patient(id, oldName, oldMobile, oldAddress);
         patientHistory.save(oldPatient);
 
-        // 🔄 Now perform the update
         String sql = "UPDATE admin_patient SET patient_name=?, mobile=?, address=? WHERE patient_id=?";
         PreparedStatement pst = conn.prepareStatement(sql);
         pst.setString(1, name);
@@ -567,8 +563,7 @@ private void searchPatients() {
 
     try {
         Connection conn = Database.getInstance().getConnection();
-
-        // ✅ Fetch patient details before deleting (for Undo/Memento)
+        
         String fetchSql = "SELECT patient_name, mobile, address FROM admin_patient WHERE patient_id=?";
         PreparedStatement fetchPst = conn.prepareStatement(fetchSql);
         fetchPst.setInt(1, id);
@@ -583,11 +578,9 @@ private void searchPatients() {
         String mobile = rs.getString("mobile");
         String address = rs.getString("address");
 
-        // ✅ Save deleted patient state before removal
         Patient deletedPatient = new Patient(id, name, mobile, address);
         patientHistory.save(deletedPatient);
 
-        // Now delete
         String sql = "DELETE FROM admin_patient WHERE patient_id=?";
         PreparedStatement pst = conn.prepareStatement(sql);
         pst.setInt(1, id);
@@ -596,7 +589,7 @@ private void searchPatients() {
 
         if (rows > 0) {
             JOptionPane.showMessageDialog(this, "Patient Deleted Successfully!");
-            // Clear fields
+     
             jTextField1.setText("");
             jTextField2.setText("");
             jTextField3.setText("");
@@ -638,8 +631,11 @@ private void searchPatients() {
     }//GEN-LAST:event_jLabel8MouseClicked
 
     private void undoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_undoBtnActionPerformed
- Patient lastPatient = patientHistory.undo();
+    
+        Patient lastPatient = patientHistory.undo();
+        
     if (lastPatient != null) {
+        
         jTextField1.setText(String.valueOf(lastPatient.getId()));
         jTextField2.setText(lastPatient.getName());
         jTextField3.setText(lastPatient.getMobile());
@@ -661,8 +657,7 @@ private void searchPatients() {
     String patientName = jTable1.getValueAt(selectedRow, 1).toString();
     String mobile      = jTable1.getValueAt(selectedRow, 2).toString();
     String address     = jTable1.getValueAt(selectedRow, 3).toString();
-
-    //Visitor used
+  
     PatientReport report = new PatientReport(patientName, mobile, address);
     PatientPrintVisitor visitor = new PatientPrintVisitor();
     report.accept(visitor);

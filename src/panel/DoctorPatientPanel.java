@@ -34,12 +34,10 @@ public class DoctorPatientPanel extends javax.swing.JPanel {
         String sql = "SELECT * FROM doctor_patient";
         PreparedStatement pst = con.prepareStatement(sql);
         ResultSet rs = pst.executeQuery();
-
-        // Clear existing rows
+ 
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0);
-
-        // Add rows from DB
+ 
         while (rs.next()) {
             Object[] row = {
                 rs.getInt("patient_id"),
@@ -375,7 +373,7 @@ public class DoctorPatientPanel extends javax.swing.JPanel {
         pst.executeUpdate();
         JOptionPane.showMessageDialog(this, "Patient added successfully!");
 
-        loadPatients();  // refresh table
+        loadPatients();   
     } catch (Exception e) {
         e.printStackTrace();
         JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
@@ -391,7 +389,7 @@ public class DoctorPatientPanel extends javax.swing.JPanel {
     
     try {
          Connection conn = Database.getInstance().getConnection();
-        int patientId = Integer.parseInt(jTable1.getValueAt(selectedRow, 0).toString()); // patient_id
+        int patientId = Integer.parseInt(jTable1.getValueAt(selectedRow, 0).toString());  
 
         String sql = "UPDATE doctor_patient SET patient_name=?, age=?, mobile=?, address=?, diagnosis=?, last_visit_date=? WHERE patient_id=?";
         PreparedStatement pst = conn.prepareStatement(sql);
@@ -406,7 +404,7 @@ public class DoctorPatientPanel extends javax.swing.JPanel {
 
         pst.executeUpdate();
         JOptionPane.showMessageDialog(this, "Patient updated successfully!");
-        loadPatients(); // refresh table
+        loadPatients();  
     } catch (Exception e) {
         e.printStackTrace();
         JOptionPane.showMessageDialog(this, "Update failed: " + e.getMessage());
@@ -422,7 +420,7 @@ public class DoctorPatientPanel extends javax.swing.JPanel {
     
     try {
          Connection conn = Database.getInstance().getConnection();
-        int patientId = Integer.parseInt(jTable1.getValueAt(selectedRow, 0).toString()); // patient_id
+        int patientId = Integer.parseInt(jTable1.getValueAt(selectedRow, 0).toString());  
 
         String sql = "DELETE FROM doctor_patient WHERE patient_id=?";
         PreparedStatement pst = conn.prepareStatement(sql);
@@ -430,7 +428,7 @@ public class DoctorPatientPanel extends javax.swing.JPanel {
 
         pst.executeUpdate();
         JOptionPane.showMessageDialog(this, "Patient deleted successfully!");
-        loadPatients(); // refresh table
+        loadPatients();  
     } catch (Exception e) {
         e.printStackTrace();
         JOptionPane.showMessageDialog(this, "Delete failed: " + e.getMessage());
@@ -440,15 +438,15 @@ public class DoctorPatientPanel extends javax.swing.JPanel {
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
        int selectedRow = jTable1.getSelectedRow();
     if (selectedRow != -1) {
-        // Load selected row data into text fields
-        jTextField1.setText(jTable1.getValueAt(selectedRow, 1).toString()); // patient_name
-        jTextField2.setText(jTable1.getValueAt(selectedRow, 2).toString()); // age
-        jTextField3.setText(jTable1.getValueAt(selectedRow, 3).toString()); // mobile
-        jTextField4.setText(jTable1.getValueAt(selectedRow, 4).toString()); // address
-        jTextField8.setText(jTable1.getValueAt(selectedRow, 5).toString()); // diagnosis
+         
+        jTextField1.setText(jTable1.getValueAt(selectedRow, 1).toString());  
+        jTextField2.setText(jTable1.getValueAt(selectedRow, 2).toString()); 
+        jTextField3.setText(jTable1.getValueAt(selectedRow, 3).toString());  
+        jTextField4.setText(jTable1.getValueAt(selectedRow, 4).toString());  
+        jTextField8.setText(jTable1.getValueAt(selectedRow, 5).toString());  
         
         try {
-            // Parse date from table to jDateChooser
+          
             String dateStr = jTable1.getValueAt(selectedRow, 6).toString();
             java.util.Date date = new SimpleDateFormat("yyyy-MM-dd").parse(dateStr);
             jDateChooser1.setDate(date);

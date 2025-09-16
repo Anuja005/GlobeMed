@@ -37,7 +37,7 @@ public class Stocks extends javax.swing.JPanel {
         ResultSet rs = pst.executeQuery();
 
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        model.setRowCount(0); // clear table
+        model.setRowCount(0);  
 
         while (rs.next()) {
             Object[] row = {
@@ -373,8 +373,7 @@ public class Stocks extends javax.swing.JPanel {
     String priceStr = jTextField4.getText().trim();
     Date expiryDate = jDateChooser1.getDate();
     String status = jComboBox1.getSelectedItem().toString();
-
-    // Validations
+ 
     if (medicineName.isEmpty() || quantityStr.isEmpty() || priceStr.isEmpty() || expiryDate == null) {
         JOptionPane.showMessageDialog(this, "Please fill all fields!");
         return;
@@ -404,7 +403,7 @@ public class Stocks extends javax.swing.JPanel {
         int rows = pst.executeUpdate();
         if (rows > 0) {
             JOptionPane.showMessageDialog(this, "Stock added successfully!");
-            loadStock(); // refresh table
+            loadStock();  
         }
 
         pst.close();
@@ -457,7 +456,7 @@ public class Stocks extends javax.swing.JPanel {
         int rows = pst.executeUpdate();
         if (rows > 0) {
             JOptionPane.showMessageDialog(this, "Stock updated successfully!");
-            loadStock(); // refresh table
+            loadStock();  
         }
 
         pst.close();
@@ -501,11 +500,11 @@ public class Stocks extends javax.swing.JPanel {
     public void mouseClicked(java.awt.event.MouseEvent evt) {
         int row = jTable1.getSelectedRow();
         if (row >= 0) {
-            jTextField1.setText(jTable1.getValueAt(row, 1).toString()); // Medicine Name
-            jTextField3.setText(jTable1.getValueAt(row, 2).toString()); // Quantity
-            jTextField4.setText(jTable1.getValueAt(row, 3).toString()); // Price per Unit
-            jDateChooser1.setDate((Date) jTable1.getValueAt(row, 4));   // Expiry Date
-            jComboBox1.setSelectedItem(jTable1.getValueAt(row, 5).toString()); // Status
+            jTextField1.setText(jTable1.getValueAt(row, 1).toString());  
+            jTextField3.setText(jTable1.getValueAt(row, 2).toString());  
+            jTextField4.setText(jTable1.getValueAt(row, 3).toString());  
+            jDateChooser1.setDate((Date) jTable1.getValueAt(row, 4));   
+            jComboBox1.setSelectedItem(jTable1.getValueAt(row, 5).toString());  
         }
     }
 });

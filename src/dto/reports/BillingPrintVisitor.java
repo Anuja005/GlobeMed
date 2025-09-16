@@ -42,7 +42,7 @@ public class BillingPrintVisitor implements ReportVisitor {
 
     @Override
     public void visit(PatientReport report) {
-        // Not implemented here, this class is only for Billing reports
+        //  only for Billing reports
     }
 
     private void print(String text) {

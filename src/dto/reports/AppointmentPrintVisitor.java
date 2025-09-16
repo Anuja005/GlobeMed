@@ -41,12 +41,12 @@ public class AppointmentPrintVisitor implements ReportVisitor {
 
     @Override
     public void visit(PatientReport report) {
-        // not needed here
+        
     }
 
     @Override
     public void visit(BillingReport report) {
-        // not needed here
+         
     }
 
     private void print(String text) {

@@ -409,7 +409,7 @@ public class Billing extends javax.swing.JPanel {
         }
 
         BillingBridge billingBridge = new PatientBilling(strategy);
-        billingBridge.pay(totalAmount); // prints processing message
+        billingBridge.pay(totalAmount);  
 
         JOptionPane.showMessageDialog(this, "Billing record added successfully!");
         loadBilling();
@@ -530,8 +530,7 @@ int selectedRow = jTable1.getSelectedRow();
     String paymentStatus = jTable1.getValueAt(selectedRow, 5).toString();
 
     BillingReport report = new BillingReport(patientName, doctorName, totalAmount, dateIssued, paymentStatus);
-
-    // ✅ Use Billing Visitor
+ 
     BillingPrintVisitor visitor = new BillingPrintVisitor();
     report.accept(visitor);
     }//GEN-LAST:event_printBtnActionPerformed

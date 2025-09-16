@@ -275,13 +275,9 @@ public class AdminDashboardFrame extends javax.swing.JFrame {
             JOptionPane.YES_NO_OPTION);
 
     if (confirm == JOptionPane.YES_OPTION) {
-        // Optional: clear any global session or user data
-        // Example: LoggedInUser.clear();
-
-        // Close current dashboard
+ 
         this.dispose();
-
-        // Open login frame
+ 
         LoginFrame login = new LoginFrame();
         login.setVisible(true);
     }
@@ -289,15 +285,14 @@ public class AdminDashboardFrame extends javax.swing.JFrame {
 
     private void themeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_themeBtnActionPerformed
         try {
-            // Switch the theme
+         
             if (isDark) {
                 FlatMacLightLaf.setup();
             } else {
                 FlatMacDarkLaf.setup();
             }
             isDark = !isDark;
-
-            // Refresh all open windows and components
+ 
             for (Window window : Window.getWindows()) {
                 SwingUtilities.updateComponentTreeUI(window);
                 window.invalidate();

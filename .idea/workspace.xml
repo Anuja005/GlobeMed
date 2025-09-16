@@ -4,7 +4,128 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1a632612-c32b-4c35-a261-bf85e30b0512" name="Changes" comment=" Visitor pattern used in Currently Patients Reports" />
+    <list default="true" id="1a632612-c32b-4c35-a261-bf85e30b0512" name="Changes" comment="Theme Setup for all Dashboards">
+      <change beforePath="$PROJECT_DIR$/.idea/caches/deviceStreaming.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/dao/PatientDAO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/dto/reports/AppointmentPrintVisitor.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/dto/reports/AppointmentPrintVisitor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/dto/reports/BillingPrintVisitor.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/dto/reports/BillingPrintVisitor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/gui/AdminDashboardFrame$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/gui/AdminDashboardFrame$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/gui/AdminDashboardFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/gui/AdminDashboardFrame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/gui/BillingOfficerDashboardFrame$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/gui/BillingOfficerDashboardFrame$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/gui/BillingOfficerDashboardFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/gui/BillingOfficerDashboardFrame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/gui/DoctorDashboardFrame$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/gui/DoctorDashboardFrame$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/gui/DoctorDashboardFrame$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/gui/DoctorDashboardFrame$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/gui/DoctorDashboardFrame$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/gui/DoctorDashboardFrame$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/gui/DoctorDashboardFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/gui/DoctorDashboardFrame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/gui/LoginFrame$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/gui/LoginFrame$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/gui/LoginFrame$10.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/gui/LoginFrame$10.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/gui/LoginFrame$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/gui/LoginFrame$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/gui/LoginFrame$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/gui/LoginFrame$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/gui/LoginFrame$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/gui/LoginFrame$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/gui/LoginFrame$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/gui/LoginFrame$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/gui/LoginFrame$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/gui/LoginFrame$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/gui/LoginFrame$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/gui/LoginFrame$7.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/gui/LoginFrame$8.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/gui/LoginFrame$8.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/gui/LoginFrame$9.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/gui/LoginFrame$9.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/gui/LoginFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/gui/LoginFrame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/gui/NurseDashboardFrame$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/gui/NurseDashboardFrame$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/gui/NurseDashboardFrame$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/gui/NurseDashboardFrame$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/gui/NurseDashboardFrame$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/gui/NurseDashboardFrame$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/gui/NurseDashboardFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/gui/NurseDashboardFrame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/gui/PatientDashboardFrame$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/gui/PatientDashboardFrame$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/gui/PatientDashboardFrame$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/gui/PatientDashboardFrame$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/gui/PatientDashboardFrame$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/gui/PatientDashboardFrame$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/gui/PatientDashboardFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/gui/PatientDashboardFrame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/gui/PharmacistDashboardFrame$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/gui/PharmacistDashboardFrame$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/gui/PharmacistDashboardFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/gui/PharmacistDashboardFrame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/model/Bill.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/model/Report.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/model/Staff.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/panel/Admin_PatientManagementPanel$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/Admin_PatientManagementPanel$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/panel/Admin_PatientManagementPanel$10.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/Admin_PatientManagementPanel$10.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/panel/Admin_PatientManagementPanel$11.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/Admin_PatientManagementPanel$11.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/panel/Admin_PatientManagementPanel$12.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/Admin_PatientManagementPanel$12.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/panel/Admin_PatientManagementPanel$13.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/Admin_PatientManagementPanel$13.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/panel/Admin_PatientManagementPanel$14.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/Admin_PatientManagementPanel$14.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/panel/Admin_PatientManagementPanel$15.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/Admin_PatientManagementPanel$15.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/panel/Admin_PatientManagementPanel$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/Admin_PatientManagementPanel$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/panel/Admin_PatientManagementPanel$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/Admin_PatientManagementPanel$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/panel/Admin_PatientManagementPanel$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/Admin_PatientManagementPanel$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/panel/Admin_PatientManagementPanel$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/Admin_PatientManagementPanel$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/panel/Admin_PatientManagementPanel$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/Admin_PatientManagementPanel$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/panel/Admin_PatientManagementPanel$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/Admin_PatientManagementPanel$7.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/panel/Admin_PatientManagementPanel$8.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/Admin_PatientManagementPanel$8.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/panel/Admin_PatientManagementPanel$9.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/Admin_PatientManagementPanel$9.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/panel/Admin_PatientManagementPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/Admin_PatientManagementPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/panel/AppointmentManagement$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/AppointmentManagement$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/panel/AppointmentManagement$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/AppointmentManagement$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/panel/AppointmentManagement$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/AppointmentManagement$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/panel/AppointmentManagement$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/AppointmentManagement$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/panel/AppointmentManagement$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/AppointmentManagement$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/panel/AppointmentManagement$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/AppointmentManagement$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/panel/AppointmentManagement$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/AppointmentManagement$7.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/panel/AppointmentManagement$8.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/AppointmentManagement$8.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/panel/AppointmentManagement$9.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/AppointmentManagement$9.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/panel/AppointmentManagement.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/AppointmentManagement.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/panel/Billing$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/Billing$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/panel/Billing$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/Billing$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/panel/Billing$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/Billing$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/panel/Billing$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/Billing$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/panel/Billing$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/Billing$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/panel/Billing$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/Billing$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/panel/Billing$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/Billing$7.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/panel/Billing.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/Billing.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/panel/DoctorPatientPanel$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/DoctorPatientPanel$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/panel/DoctorPatientPanel$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/DoctorPatientPanel$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/panel/DoctorPatientPanel$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/DoctorPatientPanel$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/panel/DoctorPatientPanel$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/DoctorPatientPanel$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/panel/DoctorPatientPanel$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/DoctorPatientPanel$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/panel/DoctorPatientPanel$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/DoctorPatientPanel$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/panel/DoctorPatientPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/DoctorPatientPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/panel/PatientBillingPanel$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/PatientBillingPanel$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/panel/PatientBillingPanel$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/PatientBillingPanel$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/panel/PatientBillingPanel$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/PatientBillingPanel$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/panel/PatientBillingPanel$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/PatientBillingPanel$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/panel/PatientBillingPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/PatientBillingPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/panel/Roles$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/Roles$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/panel/Roles$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/Roles$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/panel/Roles$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/Roles$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/panel/Roles$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/Roles$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/panel/Roles$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/Roles$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/panel/Roles$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/Roles$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/panel/Roles$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/Roles$7.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/panel/Roles.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/Roles.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/panel/Stocks$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/Stocks$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/panel/Stocks$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/Stocks$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/panel/Stocks$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/Stocks$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/panel/Stocks$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/Stocks$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/panel/Stocks$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/Stocks$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/panel/Stocks$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/Stocks$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/panel/Stocks$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/Stocks$7.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/panel/Stocks.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/panel/Stocks.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nbproject/private/private.xml" beforeDir="false" afterPath="$PROJECT_DIR$/nbproject/private/private.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/PatientDAO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dto/reports/AppointmentPrintVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dto/reports/AppointmentPrintVisitor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dto/reports/BillingPrintVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dto/reports/BillingPrintVisitor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/AdminDashboardFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/AdminDashboardFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/BillingOfficerDashboardFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/BillingOfficerDashboardFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/DoctorDashboardFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/DoctorDashboardFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/LoginFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/LoginFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/NurseDashboardFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/NurseDashboardFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/PatientDashboardFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/PatientDashboardFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/PharmacistDashboardFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/PharmacistDashboardFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Bill.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Report.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Staff.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/panel/Admin_PatientManagementPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/panel/Admin_PatientManagementPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/panel/AppointmentManagement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/panel/AppointmentManagement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/panel/Billing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/panel/Billing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/panel/DoctorPatientPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/panel/DoctorPatientPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/panel/PatientBillingPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/panel/PatientBillingPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/panel/Roles.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/panel/Roles.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/panel/Stocks.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/panel/Stocks.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -377,14 +498,21 @@
       <option name="project" value="LOCAL" />
       <updated>1757844912097</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="Theme Setup for all Dashboards">
+      <option name="closed" value="true" />
+      <created>1757847734889</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1757847734889</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Admin Patient others" />
     <MESSAGE value="Admin Dashboard All Done" />
     <MESSAGE value="Pharmacist/Nurse/Doctor Dashboard All Done" />
     <MESSAGE value="Admin/Billing Officer/ Patient Billing Reports All Done" />
@@ -409,6 +537,7 @@
     <MESSAGE value=" Visitor pattern used in Doctor's Patients Reports" />
     <MESSAGE value=" Visitor pattern used in Nurse's Patients Reports" />
     <MESSAGE value=" Visitor pattern used in Currently Patients Reports" />
-    <option name="LAST_COMMIT_MESSAGE" value=" Visitor pattern used in Currently Patients Reports" />
+    <MESSAGE value="Theme Setup for all Dashboards" />
+    <option name="LAST_COMMIT_MESSAGE" value="Theme Setup for all Dashboards" />
   </component>
 </project>
