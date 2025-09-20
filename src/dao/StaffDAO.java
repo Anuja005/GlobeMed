@@ -17,7 +17,7 @@ import util.Database;
 public class StaffDAO {
     public void saveStaff(StaffMember staff) throws Exception {
         Connection conn = Database.getInstance().getConnection();
-        String sql = "INSERT INTO admin_roles (name, user_type, mobile, address, username, password) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO users (name, user_type, mobile, address, username, password) VALUES (?, ?, ?, ?, ?, ?)";
         PreparedStatement pst = conn.prepareStatement(sql);
 
         pst.setString(1, staff.getName());

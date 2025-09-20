@@ -62,33 +62,15 @@ CREATE TABLE IF NOT EXISTS `admin_patient` (
   `mobile` varchar(45) NOT NULL,
   `address` varchar(45) NOT NULL,
   PRIMARY KEY (`patient_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb3;
 
 -- Dumping data for table globmed.admin_patient: ~5 rows (approximately)
 INSERT INTO `admin_patient` (`patient_id`, `patient_name`, `mobile`, `address`) VALUES
 	(2, 'sahan', '0786543231', 'colombo'),
 	(4, 'Anuja', '0773480439', 'Anuradhapura'),
 	(11, 'Gayan', '0773480431', 'Kandy'),
-	(14, 'Gayanii', '0773480430', 'Kandy13i'),
-	(15, 'Guneya', '0723480224', 'Ampara');
-
--- Dumping structure for table globmed.admin_roles
-DROP TABLE IF EXISTS `admin_roles`;
-CREATE TABLE IF NOT EXISTS `admin_roles` (
-  `user_id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(25) NOT NULL,
-  `user_type` varchar(15) NOT NULL,
-  `mobile` varchar(10) NOT NULL,
-  `address` varchar(25) NOT NULL,
-  `username` varchar(15) NOT NULL,
-  `password` varchar(15) NOT NULL,
-  PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3;
-
--- Dumping data for table globmed.admin_roles: ~2 rows (approximately)
-INSERT INTO `admin_roles` (`user_id`, `name`, `user_type`, `mobile`, `address`, `username`, `password`) VALUES
-	(3, 'Rashmika', 'Admin', '0781245130', 'Galle', 'rash', '123'),
-	(4, 'anuja', 'Doctor', '0773480439', 'Anuradhapura', 'anuja2005', '123');
+	(15, 'Guneya', '0723480222', 'Ampara'),
+	(18, 'Gayanii', '0773480430', 'Kandy13i');
 
 -- Dumping structure for table globmed.billing
 DROP TABLE IF EXISTS `billing`;
@@ -115,9 +97,9 @@ CREATE TABLE IF NOT EXISTS `doctor_patient` (
   `diagnosis` varchar(45) NOT NULL,
   `last_visit_date` datetime NOT NULL,
   PRIMARY KEY (`patient_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table globmed.doctor_patient: ~2 rows (approximately)
+-- Dumping data for table globmed.doctor_patient: ~1 rows (approximately)
 INSERT INTO `doctor_patient` (`patient_id`, `patient_name`, `age`, `mobile`, `address`, `diagnosis`, `last_visit_date`) VALUES
 	(2, 'Dasun', '41', '0773456221', 'Kandy', 'Fever', '2025-08-02 00:00:00');
 
@@ -159,21 +141,25 @@ INSERT INTO `stock` (`stock_id`, `medicine_name`, `quantity`, `price_per_unit`, 
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
   `user_id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(25) NOT NULL,
+  `user_type` varchar(15) NOT NULL,
+  `mobile` varchar(10) NOT NULL,
+  `address` varchar(25) NOT NULL,
   `username` varchar(15) NOT NULL,
   `password` varchar(15) NOT NULL,
-  `user_type` varchar(15) NOT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb3;
 
 -- Dumping data for table globmed.users: ~6 rows (approximately)
-INSERT INTO `users` (`user_id`, `username`, `password`, `user_type`) VALUES
-	(1, 'anuja', '123', 'Admin'),
-	(2, 'admin', '123', 'Admin'),
-	(3, 'doca', '123', 'Doctor'),
-	(4, 'phar', '123', 'Pharmacist'),
-	(5, 'billing', '123', 'BillingOfficer'),
-	(6, 'patient', '123', 'Patient'),
-	(7, 'nurse', '123', 'Nurse');
+INSERT INTO `users` (`user_id`, `name`, `user_type`, `mobile`, `address`, `username`, `password`) VALUES
+	(3, 'admin', 'Admin', '0781245130', 'Galle', 'admin', '123'),
+	(4, 'anuja', 'Admin', '0773480439', 'Anuradhapura', 'anuja', '123'),
+	(5, 'dasun', 'Doctor', '0718178192', 'Colombo', 'doca', '123'),
+	(6, 'sahan', 'Pharmacist', '0789090768', 'Kandy', 'phar', '123'),
+	(7, 'kamal', 'BillingOfficer', '0781234567', 'Gampaha', 'billing', '123'),
+	(8, 'siril', 'Patient', '0723456789', 'Matara', 'patient', '123'),
+	(9, 'kanthi', 'Nurse', '0776543456', 'Galle', 'nurse', '123'),
+	(10, 'susila', 'Doctor', '0718178195', 'Colombo', 'susi', '123');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

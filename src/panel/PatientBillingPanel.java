@@ -122,7 +122,7 @@ public class PatientBillingPanel extends javax.swing.JPanel {
 
         jLabel12.setText("Payment Status");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Paid", "Pending", "Rejected" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cash", "Card", "Insurance" }));
 
         jLabel9.setText("Date Issued");
 
@@ -216,7 +216,7 @@ public class PatientBillingPanel extends javax.swing.JPanel {
 
         jLabel11.setText("Payment Status");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Paid", "Pending", "Rejected" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cash", "Card", "Insurance" }));
 
         printBtn.setBackground(new java.awt.Color(51, 153, 255));
         printBtn.setForeground(new java.awt.Color(255, 255, 255));

@@ -31,7 +31,7 @@ public class Roles extends javax.swing.JPanel {
     private void loadStaffUsers() {
     try {
         Connection conn = Database.getInstance().getConnection();
-        String sql = "SELECT * FROM admin_roles";
+        String sql = "SELECT * FROM users";
         PreparedStatement pst = conn.prepareStatement(sql);
         ResultSet rs = pst.executeQuery();
 
@@ -387,7 +387,7 @@ public class Roles extends javax.swing.JPanel {
 
     try {
         Connection conn = Database.getInstance().getConnection();
-        String sql = "UPDATE admin_roles SET name=?, user_type=?, mobile=?, address=?, username=?, password=? WHERE user_id=?";
+        String sql = "UPDATE users SET name=?, user_type=?, mobile=?, address=?, username=?, password=? WHERE user_id=?";
         PreparedStatement pst = conn.prepareStatement(sql);
         pst.setString(1, name);
         pst.setString(2, role);
@@ -423,7 +423,7 @@ public class Roles extends javax.swing.JPanel {
 
     try {
         Connection conn = Database.getInstance().getConnection();
-        String sql = "DELETE FROM admin_roles WHERE user_id=?";
+        String sql = "DELETE FROM users WHERE user_id=?";
         PreparedStatement pst = conn.prepareStatement(sql);
         pst.setInt(1, userId);
 

@@ -258,7 +258,7 @@ public class Billing extends javax.swing.JPanel {
 
         jLabel11.setText("Payment Status");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Paid", "Pending", "Rejected" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cash", "Card", "Insurance" }));
 
         printBtn.setBackground(new java.awt.Color(51, 153, 255));
         printBtn.setForeground(new java.awt.Color(255, 255, 255));
